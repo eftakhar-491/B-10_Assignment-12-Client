@@ -9,6 +9,9 @@ import Profile from "../Components/DashboardComponents/Profile";
 import Applications from "../Components/DashboardComponents/Applications";
 import Reviews from "../Components/DashboardComponents/Reviews";
 import AddScholarship from "../Components/DashboardComponents/AddScholarship";
+import MangeScholarship from "../Components/DashboardComponents/MangeScholarship";
+import AllReviews from "../Components/DashboardComponents/AllReviews";
+import AppliedScholarship from "../Components/DashboardComponents/appliedScholarship";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +54,18 @@ const router = createBrowserRouter([
       {
         path: "add-scholarship",
         element: <AddScholarship />,
+      },
+      {
+        path: "mange-scholarship",
+        element: <MangeScholarship />,
+      },
+      {
+        path: "all-reviews",
+        element: <AllReviews />,
+      },
+      {
+        path: "applied-scholarship",
+        element: <AppliedScholarship />,
       },
     ],
   },
