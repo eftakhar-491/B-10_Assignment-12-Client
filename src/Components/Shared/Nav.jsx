@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/icon/logo.png";
 import profile from "../../assets/icon/profile.gif";
 export default function Nav() {
@@ -31,9 +31,14 @@ export default function Nav() {
               </NavLink>
             </ul>
             <div className="flex items-center gap-4">
-              <button className="active:scale-95 text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold">
-                LogIn
-              </button>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "bg-blue-200" : "")}
+              >
+                <button className="active:scale-95 text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold">
+                  LogIn
+                </button>
+              </NavLink>
               {/* <button className="text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-xl font-bold">
                 Sign Up
               </button> */}
