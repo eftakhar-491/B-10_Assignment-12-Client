@@ -22,11 +22,11 @@ export default function AllScholarship() {
             You can easily find your own choise
           </p>
           <div className="max-w-[1900px] mx-auto text-black">
-            <div className=" h-12 w-fit flex mx-auto items-center gap-3 justify-center rounded-xl bg-white mt-10">
+            <div className="w-11/12 md:w-[600px] h-12 flex mx-auto items-center gap-3  justify-center rounded-xl bg-white mt-10">
               <input
                 type="text"
                 placeholder="Search"
-                className="bg-transparent pl-5 h-full border-none outline-none w-[600px]"
+                className="bg-transparent pl-5 h-full border-none outline-none w-full"
               />
               <button className="border-2 h-full px-5 border-blue-800 hover:bg-blue-100 active:scale-95 rounded-xl">
                 <svg

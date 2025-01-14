@@ -10,7 +10,7 @@ export default function ScholarshipCard() {
         />
         <div>
           <h1 className="text-xl">University Nam e sdfafdsadf sdafasdfs </h1>
-          <p className=" flex gap-1 items-center mt-2">
+          <p className="flex gap-1 items-center mt-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
