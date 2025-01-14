@@ -4,7 +4,7 @@ import bg from "../Assets/images/bg.png";
 export default function AllScholarship() {
   return (
     <>
-      <section>
+      <section className="mt-[62px]">
         <div
           style={{
             backgroundImage: `linear-gradient(

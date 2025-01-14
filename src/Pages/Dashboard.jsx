@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import dl from "../assets/images/DL.png";
+import logo from "../assets/icon/logo.png";
+
 export default function Dashboard() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,22 +27,36 @@ export default function Dashboard() {
                       rgba(0,0,0,.40)
                     ),url(${dl})`,
             }}
-            className="fixed w-[320px] text-white bg-cover bg-blue-900/80 h-screen"
+            className="fixed hidden z-40 md:block w-[320px] text-white bg-cover bg-blue-900/80 h-screen"
           >
-            {/* <div>
-              <div className="rounded-full w-[160px] h-[160px] mx-auto">
-                <img
-                  className="border w-full h-full rounded-full"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9hXH2C1GywtIKxH1ltrq6Kdy03Z-GjbXFNA&s"
-                  alt="profile image"
-                />
+            <div className="relative">
+              <div className="absolute -top-5 scale-125 cursor-pointer active:scale-110 right-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
               </div>
-              <h1 className="text-center text-lg font-Lora font-semibold">
-                Eftakharul Islam
+              <img
+                className=" bg-white rounded-full p-2 mx-auto mt-10"
+                src={logo}
+                alt="logo"
+              />
+              <h1 className="text-center text-3xl font-Lora py-4">
+                ScholarSphere
               </h1>
-            </div> */}
-
-            <ul className="flex flex-col gap-2 mt-5 px-2">
+            </div>
+            <hr />
+            <ul className="flex flex-col gap-2 mt-5 px-4">
               <NavLink
                 to={"/dashboard/profile"}
                 className={({ isActive }) =>
@@ -260,7 +276,7 @@ export default function Dashboard() {
             </ul>
           </section>
           {/* right section */}
-          <section className=" h-screen w-full">
+          <section className="relative h-screen w-full">
             <Outlet />
           </section>
         </div>

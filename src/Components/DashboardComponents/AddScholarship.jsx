@@ -1,4 +1,5 @@
 import { useState } from "react";
+import OpenDrowerBTN from "./OpenDrowerBTN";
 
 export default function AddScholarship() {
   const [formData, setFormData] = useState({
@@ -25,7 +26,8 @@ export default function AddScholarship() {
   };
   return (
     <>
-      <section className="bg-white h-content py-10 ml-[320px]">
+      <section className="md:ml-[320px] bg-white h-content py-10 ">
+        <OpenDrowerBTN />
         <div className="max-w-4xl mx-auto p-6  bg-gray-100 rounded-lg shadow-md">
           <h1 className="text-2xl font-bold mb-6 text-center">
             Add New Scholarship

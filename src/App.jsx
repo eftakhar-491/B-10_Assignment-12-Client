@@ -6,6 +6,7 @@ function App() {
     <>
       <Nav />
       <Outlet />
+
       {/* <h1>footer</h1> */}
     </>
   );

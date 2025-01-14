@@ -1,9 +1,11 @@
 import React from "react";
+import OpenDrowerBTN from "./OpenDrowerBTN";
 
 export default function Profile() {
   return (
     <>
-      <section className="ml-[320px] font-Roboto min-h-screen bg-white ">
+      <section className="relative md:ml-[320px] font-Roboto min-h-screen bg-white ">
+        <OpenDrowerBTN />
         <div className="flex flex-col mt-auto min-h-screen items-center justify-center  py-10">
           <h1 className="text-3xl font-Lora font-semibold mb-3">
             User Profile
@@ -15,7 +17,7 @@ export default function Profile() {
                 alt="Avatar"
                 className="w-40 h-40 rounded-full"
               />
-              <h3 className="font-semibold absolute top-3 -right-8 text-sm border-2 border-blue-600 w-fit px-5 py-[1px] rounded-full">
+              <h3 className="font-semibold absolute top-3 bg-blue-200/80 -right-8 text-sm border-2 border-blue-600 w-fit px-5 py-[1px] rounded-full">
                 Admin
               </h3>
             </div>

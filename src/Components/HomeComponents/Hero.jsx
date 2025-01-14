@@ -14,7 +14,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 export default function Hero() {
   return (
     <>
-      <header>
+      <header className="mt-[61px]">
         <div
           style={{
             backgroundImage: `linear-gradient(
@@ -40,12 +40,12 @@ export default function Hero() {
             className="mySwiper text-white"
           >
             <SwiperSlide>
-              <div className="h-[600px] flex items-center justify-between px-[5%]">
-                <div className="w-1/2">
-                  <h1 className="text-5xl font-bold mb-3">
+              <div className=" h-[600px] gap-4 md:gap-0 flex md:flex-row flex-col-reverse md:items-center md:justify-between justify-center px-[5%]">
+                <div className=" md:w-1/2">
+                  <h1 className="text-2xl md:text-5xl font-bold mb-3">
                     Your Gateway to Educational Opportunities
                   </h1>
-                  <p className="text-lg">
+                  <p className="text-sm md:text-lg">
                     Simplify the process of managing and applying for
                     scholarships with our innovative platform. Helping students
                     and administrators achieve success seamlessly.
@@ -54,18 +54,18 @@ export default function Hero() {
                     See All Scholarship
                   </button>
                 </div>
-                <div className="w-1/2">
+                <div className="md:w-1/2 ">
                   <img className="mx-auto" src={h2} alt="" />
                 </div>
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="h-[600px] flex items-center justify-between px-[5%]">
-                <div className="w-1/2">
-                  <h1 className="text-5xl font-bold mb-3">
+              <div className="h-[600px] md:gap-0 gap-4 flex md:flex-row flex-col-reverse md:items-center md:justify-between justify-center px-[5%]">
+                <div className="md:w-1/2">
+                  <h1 className="text-2xl md:text-5xl font-bold mb-3">
                     Empowering Dreams, One Scholarship at a Time
                   </h1>
-                  <p className="text-lg">
+                  <p className="text-sm md:text-lg">
                     Simplify the process of managing and applying for
                     scholarships with our innovative platform. Helping students
                     and administrators achieve success seamlessly
@@ -74,18 +74,18 @@ export default function Hero() {
                     See All Scholarship
                   </button>
                 </div>
-                <div className="w-1/2">
+                <div className="md:w-1/2 ">
                   <img className="mx-auto" src={h3} alt="" />
                 </div>
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="h-[600px] flex items-center justify-between px-[5%]">
-                <div className="w-1/2">
-                  <h1 className="text-5xl font-bold mb-3">
+              <div className="h-[600px] gap-4 md:gap-0 flex md:flex-row flex-col-reverse md:items-center md:justify-between justify-center px-[5%]">
+                <div className="md:w-1/2">
+                  <h1 className="md:text-5xl font-bold mb-3">
                     Your Gateway to Scholarship Success
                   </h1>
-                  <p className="text-lg">
+                  <p className="text-sm md:text-lg">
                     Empowering you to focus on what matters most—achieving
                     academic excellence.
                   </p>
@@ -93,7 +93,7 @@ export default function Hero() {
                     See All Scholarship
                   </button>
                 </div>
-                <div className="w-1/2">
+                <div className="md:w-1/2 ">
                   <img className="mx-auto" src={h1} alt="" />
                 </div>
               </div>

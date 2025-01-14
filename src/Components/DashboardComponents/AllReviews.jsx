@@ -1,10 +1,12 @@
 import React from "react";
 import AllReviewsCard from "./AllReviewsCard";
+import OpenDrowerBTN from "./OpenDrowerBTN";
 
 export default function AllReviews() {
   return (
     <>
-      <section className="ml-[320px] font-Roboto">
+      <section className="md:ml-[320px] font-Roboto">
+        <OpenDrowerBTN />
         <div>
           <h1 className="text-3xl pt-9 font-Lora font-semibold text-center">
             All reviews
