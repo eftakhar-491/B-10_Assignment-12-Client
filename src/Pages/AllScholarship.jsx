@@ -11,9 +11,7 @@ export default function AllScholarship() {
   } = useQuery({
     queryKey: ["allScholarships"],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_APIURL}/scholarship/topScholarship`
-      );
+      const res = await axios.get(`${import.meta.env.VITE_APIURL}/scholarship`);
       return res.data;
     },
   });
