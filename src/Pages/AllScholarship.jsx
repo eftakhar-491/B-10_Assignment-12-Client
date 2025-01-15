@@ -1,7 +1,22 @@
 import React from "react";
 import ScholarshipCard from "../Components/Shared/ScholarshipCard";
 import bg from "../Assets/images/bg.png";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 export default function AllScholarship() {
+  const {
+    data: allScholarship,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["allScholarships"],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${import.meta.env.VITE_APIURL}/scholarship/topScholarship`
+      );
+      return res.data;
+    },
+  });
   return (
     <>
       <section className="mt-[62px]">
@@ -49,12 +64,11 @@ export default function AllScholarship() {
         </div>
 
         <div className="flex max-w-[1900px] mx-auto flex-wrap gap-4 px-[5%] justify-evenly mt-10">
-          <ScholarshipCard />
-          <ScholarshipCard />
-          <ScholarshipCard />
-          <ScholarshipCard />
-          <ScholarshipCard />
-          <ScholarshipCard />
+          {isLoading && <p>Loading...</p>}
+          {isError && <p>Something went wrong</p>}
+          {allScholarship?.map((scholarship, i) => (
+            <ScholarshipCard key={i + "all"} data={scholarship} />
+          ))}
         </div>
       </section>
     </>

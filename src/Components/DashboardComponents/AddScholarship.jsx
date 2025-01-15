@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import OpenDrowerBTN from "./OpenDrowerBTN";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../Firebase/AuthProvider";
 
 export default function AddScholarship() {
+  const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     scholarshipName: "",
     universityName: "",
@@ -16,7 +20,6 @@ export default function AddScholarship() {
     applicationFees: "",
     serviceCharge: "",
     applicationDeadline: "",
-    scholarshipPostDate: Date.now(),
   });
 
   const [uploading, setUploading] = useState(false);
@@ -24,8 +27,54 @@ export default function AddScholarship() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  function handleSubmit(e) {
+  async function handelPhotoUpload(e) {
     e.preventDefault();
+    setUploading(true);
+    const file = e.target.files[0];
+    const formdataphoto = new FormData();
+    formdataphoto.append("image", file);
+    const { data } = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_imgbb_API_KEY
+      }`,
+      formdataphoto
+    );
+    console.log(data.data.display_url);
+    setFormData({ ...formData, universityImage: data.data.display_url });
+    setUploading(false);
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (uploading) {
+      return toast.warning("Please Wait Image is Uploading");
+    }
+    try {
+      await axios.post("http://localhost:5000/scholarships", {
+        ...formData,
+        scholarshipPostDate: Date.now(),
+        postedBy: user.email,
+        rating: 0,
+      });
+      toast.success("Scholarship Added Successfully");
+      setFormData({
+        scholarshipName: "",
+        universityName: "",
+        // universityImage: "",
+        universityCountry: "",
+        universityCity: "",
+        universityWorldRank: "",
+        subjectCategory: "",
+        scholarshipCategory: "",
+        degree: "",
+        tuitionFees: "",
+        applicationFees: "",
+        serviceCharge: "",
+        applicationDeadline: "",
+      });
+      e.target.photo.value = "";
+    } catch (err) {
+      console.log(err);
+    }
     console.log(formData);
   }
   return (
@@ -73,7 +122,7 @@ export default function AddScholarship() {
                 name="photo"
                 required
                 type="file"
-                onChange={"handleImageUpload"}
+                onChange={handelPhotoUpload}
                 className="w-full p-2 border border-gray-300 rounded"
               />
               {uploading && (
