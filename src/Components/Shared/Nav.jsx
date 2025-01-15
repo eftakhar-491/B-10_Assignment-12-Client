@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/icon/logo.png";
 import profile from "../../assets/icon/profile.gif";
+import { AuthContext } from "../../Firebase/AuthProvider";
+import { toast } from "react-toastify";
 export default function Nav() {
+  const { logOut, user } = useContext(AuthContext);
+  async function handelLogout() {
+    try {
+      await logOut();
+      toast.success("Logout Success");
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <>
       <nav className="font-Roboto bg-white z-50 backdrop-blur-md fixed top-0 w-full">
@@ -70,20 +81,29 @@ export default function Nav() {
               </NavLink>
             </ul>
             <div className="flex items-center gap-4">
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? "bg-blue-200" : "")}
-              >
-                <button className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold">
-                  LogIn
+              {!user ? (
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) => (isActive ? "bg-blue-200" : "")}
+                >
+                  <button className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold">
+                    LogIn
+                  </button>
+                </NavLink>
+              ) : (
+                <button
+                  onClick={handelLogout}
+                  className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold"
+                >
+                  LogOut
                 </button>
-              </NavLink>
-              {/* <button className="text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-xl font-bold">
-                Sign Up
-              </button> */}
-              <div className="w-10 h-10 rounded-full overflow-hidden">
-                <img src={profile} alt="" />
-                {/* <img src="" alt="" /> */}
+              )}
+              <div className="border w-10 h-10 rounded-full overflow-hidden">
+                {user ? (
+                  <img src={user?.photoURL} alt="" />
+                ) : (
+                  <img src={profile} alt="" />
+                )}
               </div>
             </div>
           </div>

@@ -9,7 +9,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { app } from "./Fitebase.init";
+import { app } from "./Firebase.init";
 import axios from "axios";
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -58,6 +58,12 @@ const AuthProvider = ({ children }) => {
           { email: currentUser?.email },
           { withCredentials: true }
         );
+        await axios.post(`${import.meta.env.VITE_APIURL}/users`, {
+          email: currentUser.email,
+          name: currentUser.displayName,
+          imageUrl: currentUser.photoURL,
+          role: "user",
+        });
       } else {
         await axios.post(
           `${import.meta.env.VITE_APIURL}/logout`,

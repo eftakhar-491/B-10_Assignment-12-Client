@@ -12,6 +12,7 @@ import AddScholarship from "../Components/DashboardComponents/AddScholarship";
 import MangeScholarship from "../Components/DashboardComponents/MangeScholarship";
 import AllReviews from "../Components/DashboardComponents/AllReviews";
 import AppliedScholarship from "../Components/DashboardComponents/appliedScholarship";
+import AuthProvider from "../Firebase/AuthProvider";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <AuthProvider>
+        <Dashboard />
+      </AuthProvider>
+    ),
     children: [
       {
         path: "profile",

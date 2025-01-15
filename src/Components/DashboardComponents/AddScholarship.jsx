@@ -5,7 +5,7 @@ export default function AddScholarship() {
   const [formData, setFormData] = useState({
     scholarshipName: "",
     universityName: "",
-    universityImage: "",
+    // universityImage: "",
     universityCountry: "",
     universityCity: "",
     universityWorldRank: "",
@@ -18,12 +18,16 @@ export default function AddScholarship() {
     applicationDeadline: "",
     scholarshipPostDate: Date.now(),
   });
-  console.log(formData);
+
   const [uploading, setUploading] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(formData);
+  }
   return (
     <>
       <section className="md:ml-[320px] bg-white h-content py-10 ">
@@ -32,7 +36,7 @@ export default function AddScholarship() {
           <h1 className="text-2xl font-bold mb-6 text-center">
             Add New Scholarship
           </h1>
-          <form onSubmit={"handleSubmit"} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-1">
                 Scholarship Name
@@ -66,6 +70,8 @@ export default function AddScholarship() {
                 University Image/Logo
               </label>
               <input
+                name="photo"
+                required
                 type="file"
                 onChange={"handleImageUpload"}
                 className="w-full p-2 border border-gray-300 rounded"

@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import dl from "../assets/images/DL.png";
 import logo from "../assets/icon/logo.png";
+import { AuthContext } from "../Firebase/AuthProvider";
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  console.log(user);
   const location = useLocation();
   useEffect(() => {
     if (

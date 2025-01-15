@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import goo from "../assets/icon/goo.png";
 import { useNavigate } from "react-router-dom";
 import logbg from "../assets/images/logbg.jpg";
+import { AuthContext } from "../Firebase/AuthProvider";
+import { toast } from "react-toastify";
 export default function Login() {
   const navigate = useNavigate();
+  const { signInWithGoogle, signIn } = useContext(AuthContext);
+  function handelGoogleLogin() {
+    signInWithGoogle()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  async function handelEmailPassLogin(e) {
+    e.preventDefault();
+    const email = e.target.floating_email.value;
+    const password = e.target.floating_password.value;
+    try {
+      await signIn(email, password);
+      toast.success("Login Success");
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <>
       <section className="my-16">
@@ -18,7 +42,7 @@ export default function Login() {
           className="max-w-[1900px] mx-auto px-[5%] bg-cover rounded-lg bg-center bg-no-repeat"
         >
           <form
-            onSubmit={"handelEmailPassLogin"}
+            onSubmit={handelEmailPassLogin}
             className=" rounded-lg w-11/12 md:max-w-md lg:max-w-xl py-20"
           >
             <label className="text-2xl font-Lora font-bold">
@@ -66,13 +90,13 @@ export default function Login() {
               LogIn{" "}
             </button>
             <p className="text-center mt-4">-------- OR --------</p>
-            <button
-              onClick={"handelGoogleLogin"}
+            <div
+              onClick={handelGoogleLogin}
               className="w-full justify-center  active:scale-95 hover:bg-blue-200 border-blue-800 flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl"
             >
               <img className="w-6" src={goo} alt="" />
               Continue with Google
-            </button>
+            </div>
             <p className="mt-4 text-center">
               --- Don't have an account?{" "}
               <span
