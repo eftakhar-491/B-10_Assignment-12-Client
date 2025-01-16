@@ -1,14 +1,40 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Rating from "@mui/material/Rating";
-export default function ReviewModal() {
+import { AuthContext } from "../../Firebase/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+export default function ReviewModal({ data, setReviewModal }) {
   const [value, setValue] = useState(1);
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  console.log(data);
+  async function handelReviewSubmit(e) {
+    e.preventDefault();
+    const obj = {
+      rating: value,
+      comment: e.target.comment.value,
+      reviewDate: Date.now(),
+      scholarshipId: data.scholarshipId,
+      scholarshipName: data?.scholarshipDetails[0]?.scholarshipName,
+      universityName: data?.scholarshipDetails[0]?.universityName,
+      email: user?.email,
+      userImage: user?.photoURL,
+      userName: user?.displayName,
+    };
+    const res = await axiosSecure.post(`/reviews?email=${user?.email}`, obj);
+    console.log(obj);
+    setReviewModal(false);
+  }
   return (
     <>
       <section className="absolute z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
         <div className="max-w-[500px] w-full bg-white p-4 rounded-lg">
           <h1 className="flex mb-1 justify-between text-xl font-Lora">
             Review
-            <span className="cursor-pointer active:scale-95">
+            <span
+              onClick={() => setReviewModal(false)}
+              className="cursor-pointer active:scale-95"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -32,11 +58,10 @@ export default function ReviewModal() {
               setValue(newValue);
             }}
           />
-          <form>
+          <form onSubmit={handelReviewSubmit}>
             <textarea
               placeholder="Write your Comment here..."
-              name=""
-              id=""
+              name="comment"
               rows={5}
               className="border-2 mt-2 w-full pl-4"
             ></textarea>

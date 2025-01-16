@@ -1,17 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import OpenDrowerBTN from "./OpenDrowerBTN";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 import { AuthContext } from "../../Firebase/AuthProvider";
+import ReviewModal from "../ModalComponents/ReviewModal";
+import ApplyedDetailsForm from "../ModalComponents/ApplyedDetailsForm";
+import UpdateApplyedModal from "../ModalComponents/UpdateApplyedModal";
 
 export default function Applications() {
+  const [reviewModal, setReviewModal] = useState(false);
+  const [reviewData, setReviewData] = useState({});
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const {
     data: applicationsData,
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: ["user", user?.email],
     enabled: user ? true : false,
@@ -22,10 +28,32 @@ export default function Applications() {
       return res.data;
     },
   });
+  async function handelDelete(id) {
+    try {
+      await axiosSecure.delete(`/applyed/${id}?email=${user?.email}`);
+      refetch();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function handelUpdateApplication(id) {
+    try {
+      await axiosSecure.patch(`/applyed/${id}`, {
+        status: "Pending",
+      });
+      refetch();
+    } catch (e) {
+      console.log(e);
+    }
+  }
   console.log("-->", isLoading, user, applicationsData);
   if (isLoading) return <h1>Loading...</h1>;
   return (
     <>
+      <UpdateApplyedModal />
+      {reviewModal && (
+        <ReviewModal data={reviewData} setReviewModal={setReviewModal} />
+      )}
       <section className="md:ml-[320px] bg-white min-h-full">
         <OpenDrowerBTN />
         <div className="px-4">
@@ -75,7 +103,10 @@ export default function Applications() {
 
                       <td className="flex gap-2 justify-evenly py-2 items-center">
                         <span
-                          onClick={() => {}}
+                          onClick={() => {
+                            setReviewModal(true);
+                            setReviewData(item);
+                          }}
                           className="cursor-pointer hover:text-green-700"
                         >
                           <svg
@@ -109,7 +140,10 @@ export default function Applications() {
                             />
                           </svg>
                         </span>
-                        <span className="cursor-pointer hover:text-orange-600">
+                        <span
+                          onClick={() => handelUpdateApplication(item?._id)}
+                          className="cursor-pointer hover:text-orange-600"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -125,7 +159,10 @@ export default function Applications() {
                             />
                           </svg>
                         </span>
-                        <span className="cursor-pointer hover:text-red-600">
+                        <span
+                          onClick={() => handelDelete(item._id)}
+                          className="cursor-pointer hover:text-red-600"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
