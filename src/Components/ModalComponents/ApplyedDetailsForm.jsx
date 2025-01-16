@@ -41,7 +41,7 @@ export default function ApplyedDetailsForm({ data }) {
       formdataphoto
     );
     console.log(data.data.display_url);
-    setFormData({ ...formData, universityImage: data.data.display_url });
+    setFormData({ ...formData, myImage: data.data.display_url });
     setUploading(false);
   }
   async function handleApplySubmit(e) {
@@ -128,7 +128,7 @@ export default function ApplyedDetailsForm({ data }) {
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">
-                University Image/Logo
+                Your Image
               </label>
               <input
                 name="photo"
