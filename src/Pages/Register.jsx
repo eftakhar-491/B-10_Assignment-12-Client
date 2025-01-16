@@ -62,7 +62,11 @@ export default function Register() {
     try {
       await createUser(email, password);
       await updateUserProfile(name, imageUrl);
-
+      await axios.put(`${import.meta.env.VITE_APIURL}/users`, {
+        email,
+        name,
+        imageUrl,
+      });
       toast.success("Account Created Successfully");
     } catch (err) {
       console.log(err);

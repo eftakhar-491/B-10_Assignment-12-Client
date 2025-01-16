@@ -4,11 +4,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import ApplyedDetailsForm from "../Components/ModalComponents/ApplyedDetailsForm";
 import { useContext } from "react";
 import StateContext from "../Context/StateContext";
+import moment from "moment";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { AuthContext } from "../Firebase/AuthProvider";
 
 export default function ScholarshipDetails() {
   const { applyModal } = useContext(StateContext);
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   console.log(id);
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const {
     data: scholarshipDetails,
@@ -17,22 +22,25 @@ export default function ScholarshipDetails() {
   } = useQuery({
     queryKey: ["scholarship", id],
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_APIURL}/scholarship/details/${id}`
+      const res = await axiosSecure.get(
+        `/scholarship/details/${id}?email=${user?.email}`
       );
       return res.data;
     },
   });
   console.log(scholarshipDetails);
 
-  const date = new Date(scholarshipDetails?.scholarshipPostDate);
-  const fullDate = isLoading || date.toISOString().split("T")[0];
-  console.log(fullDate);
+  const fullDate =
+    !isLoading &&
+    moment(Number(scholarshipDetails?.scholarshipPostDate)).format(
+      "YYYY-MM-DD"
+    );
+  console.log(fullDate, scholarshipDetails?.scholarshipPostDate);
   return (
     <>
       {applyModal && <ApplyedDetailsForm data={scholarshipDetails} />}
       <section className="font-Roboto">
-        <div className="max-w-[800px] mx-auto mt-[80px] bg-white p-5 rounded-lg">
+        <div className="max-w-[1000px] mx-auto mt-[80px] bg-white p-5 rounded-lg">
           <div className="flex items-center gap-5">
             <img
               className="w-[300px] rounded-lg"
@@ -41,11 +49,22 @@ export default function ScholarshipDetails() {
             />
             <div>
               <h1 className="text-xl font bold">
+                <span className="font-semibold">University Name: </span>{" "}
                 {scholarshipDetails?.universityName}
               </h1>
-              <p>{scholarshipDetails?.universityCountry}</p>
-              <p>{scholarshipDetails?.universityCity}</p>
-              <p>{scholarshipDetails?.applicationDeadline}</p>
+              <p>
+                <span className="font-semibold">Country: </span>{" "}
+                {scholarshipDetails?.universityCountry}
+              </p>
+              <p>
+                <span className="font-semibold">City: </span>
+                {scholarshipDetails?.universityCity}
+              </p>
+              <p>
+                {" "}
+                <span className="font-semibold">Deadline: </span>{" "}
+                {scholarshipDetails?.applicationDeadline}
+              </p>
             </div>
           </div>
           <div className="mt-6">

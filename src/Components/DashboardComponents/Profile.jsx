@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import OpenDrowerBTN from "./OpenDrowerBTN";
+import { AuthContext } from "../../Firebase/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 export default function Profile() {
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  // const [userData, setUserData] = useState({});
+  const { data: userData } = useQuery({
+    queryKey: ["user", user?.email],
+    enabled: user ? true : false,
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/users/${user?.email}?email=${user?.email}`
+      );
+      return res.data;
+    },
+  });
+  console.log(user);
+  console.log("userData-->", userData);
   return (
     <>
       <section className="relative md:ml-[320px] font-Roboto min-h-screen bg-white ">
@@ -13,17 +31,17 @@ export default function Profile() {
           <div className="flex items-center gap-10 ">
             <div className="relative">
               <img
-                src="https://www.w3schools.com/w3images/avatar2.png"
-                alt="Avatar"
-                className="w-40 h-40 rounded-full"
+                src={userData?.imageUrl}
+                alt="Profil Image"
+                className="w-40 border object-cover h-40 rounded-full"
               />
               <h3 className="font-semibold absolute top-3 bg-blue-200/80 -right-8 text-sm border-2 border-blue-600 w-fit px-5 py-[1px] rounded-full">
-                Admin
+                {userData?.role}
               </h3>
             </div>
             <div className="flex border-l-2 pl-10 flex-col items-start">
-              <h2 className="text-xl font-bold font-Lora">John Doe</h2>
-              <p className="text-lg">jhonDow@gmail.com</p>
+              <h2 className="text-xl font-bold font-Lora">{userData?.name}</h2>
+              <p className="text-lg">{userData?.email}</p>
               <div className="text-lg font-semibold border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-200 cursor-pointer active:scale-95">
                 Update Profile
               </div>

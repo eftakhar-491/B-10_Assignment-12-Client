@@ -3,7 +3,8 @@ import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import dl from "../assets/images/DL.png";
 import logo from "../assets/icon/logo.png";
 import { AuthContext } from "../Firebase/AuthProvider";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 export default function Dashboard() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -280,7 +281,9 @@ export default function Dashboard() {
           </section>
           {/* right section */}
           <section className="relative h-screen w-full">
-            <Outlet />
+            <QueryClientProvider client={queryClient}>
+              <Outlet />
+            </QueryClientProvider>
           </section>
         </div>
       </main>

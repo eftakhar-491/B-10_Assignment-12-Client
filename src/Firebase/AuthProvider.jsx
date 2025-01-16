@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
           email: currentUser.email,
           name: currentUser.displayName,
           imageUrl: currentUser.photoURL,
-          role: "user",
+          role: "User",
         });
       } else {
         await axios.post(

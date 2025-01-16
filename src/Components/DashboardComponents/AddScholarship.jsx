@@ -20,6 +20,7 @@ export default function AddScholarship() {
     applicationFees: "",
     serviceCharge: "",
     applicationDeadline: "",
+    description: "",
   });
 
   const [uploading, setUploading] = useState(false);
@@ -98,6 +99,18 @@ export default function AddScholarship() {
                 className="w-full p-2 border border-gray-300 rounded"
                 required
               />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Description
+              </label>
+
+              <textarea
+                className="w-full p-2 border border-gray-300 rounded"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+              ></textarea>
             </div>
 
             <div>

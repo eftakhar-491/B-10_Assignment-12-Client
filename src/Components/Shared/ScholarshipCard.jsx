@@ -130,7 +130,7 @@ export default function ScholarshipCard({ data }) {
             onClick={() => {
               navigate(`/ScholarshipDetails/${data._id}`);
             }}
-            className=" text-center w-full text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-100 active:scale-95"
+            className="cursor-pointer text-center w-full text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-100 active:scale-95"
           >
             Show All Details
           </div>

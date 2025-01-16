@@ -52,6 +52,7 @@ export default function ApplyedDetailsForm({ data }) {
       ...formData,
       email: user?.email,
       scholarshipId: data._id,
+      status: "Pending",
     });
 
     if (res.status === 200) setApplyModal(false);
@@ -255,7 +256,7 @@ export default function ApplyedDetailsForm({ data }) {
 
             <div>
               <label className="block text-sm font-medium mb-1">
-                Study Gap
+                Study Gap(if 1 year plus)
               </label>
               <input
                 type="number"
@@ -263,7 +264,6 @@ export default function ApplyedDetailsForm({ data }) {
                 value={formData.studyGap}
                 onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded"
-                required
               />
             </div>
 

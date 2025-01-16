@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import OpenDrowerBTN from "./OpenDrowerBTN";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+
+import { AuthContext } from "../../Firebase/AuthProvider";
 
 export default function Applications() {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  const { data: applications } = useQuery({
+    queryKey: ["user", user?.email],
+
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/applyed/${user?.email}?email=${user?.email}`
+      );
+      return res.data;
+    },
+  });
+  console.log(applications);
   return (
     <>
       <section className="md:ml-[320px] bg-white min-h-full">
@@ -38,7 +55,7 @@ export default function Applications() {
                   <td className="border-r-2">Status</td>
 
                   <td className="flex gap-2 justify-evenly py-2 items-center">
-                    <span className="cursor-pointer">
+                    <span className="cursor-pointer hover:text-green-700">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -54,7 +71,7 @@ export default function Applications() {
                         />
                       </svg>
                     </span>
-                    <span className="cursor-pointer">
+                    <span className="cursor-pointer hover:text-blue-700">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -70,7 +87,7 @@ export default function Applications() {
                         />
                       </svg>
                     </span>
-                    <span className="cursor-pointer">
+                    <span className="cursor-pointer hover:text-orange-600">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -86,7 +103,7 @@ export default function Applications() {
                         />
                       </svg>
                     </span>
-                    <span className="cursor-pointer">
+                    <span className="cursor-pointer hover:text-red-600">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
