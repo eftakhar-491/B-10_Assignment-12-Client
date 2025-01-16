@@ -9,7 +9,7 @@ export default function AddScholarship() {
   const [formData, setFormData] = useState({
     scholarshipName: "",
     universityName: "",
-    // universityImage: "",
+
     universityCountry: "",
     universityCity: "",
     universityWorldRank: "",

@@ -14,6 +14,7 @@ import AllReviews from "../Components/DashboardComponents/AllReviews";
 import AppliedScholarship from "../Components/DashboardComponents/appliedScholarship";
 import AuthProvider from "../Firebase/AuthProvider";
 import ScholarshipDetails from "../Pages/ScholarshipDetails";
+import Payment from "../Pages/Payment";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/ScholarshipDetails/:id",
         element: <ScholarshipDetails />,
+      },
+      {
+        path: "/payment/:id",
+        element: <Payment />,
       },
       {
         path: "/login",

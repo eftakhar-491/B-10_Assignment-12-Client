@@ -4,16 +4,21 @@ import "./App.css";
 import AuthProvider from "./Firebase/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import StateContext from "./Context/StateContext";
+import { useState } from "react";
 const queryClient = new QueryClient();
 function App() {
+  const [applyModal, setApplyModal] = useState(false);
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <ToastContainer />
-          <Nav />
-          <Outlet />
-        </AuthProvider>
+        <StateContext.Provider value={{ applyModal, setApplyModal }}>
+          <AuthProvider>
+            <ToastContainer />
+            <Nav />
+            <Outlet />
+          </AuthProvider>
+        </StateContext.Provider>
       </QueryClientProvider>
 
       {/* <h1>footer</h1> */}
