@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         element: <AllScholarship />,
       },
       {
-        path: "/ScholarshipDetails/:id",
+        path: "/scholarshipdetails/:id",
         element: <ScholarshipDetails />,
       },
       {

@@ -9,10 +9,10 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { AuthContext } from "../Firebase/AuthProvider";
 
 export default function ScholarshipDetails() {
-  const { applyModal } = useContext(StateContext);
+  const { applyModal, setApplyModal } = useContext(StateContext);
   const { user } = useContext(AuthContext);
   const { id } = useParams();
-  console.log(id);
+  console.log(id, user);
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const {
@@ -21,6 +21,7 @@ export default function ScholarshipDetails() {
     isError,
   } = useQuery({
     queryKey: ["scholarship", id],
+    enabled: id && user?.email ? true : false,
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/scholarship/details/${id}?email=${user?.email}`

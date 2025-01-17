@@ -128,7 +128,7 @@ export default function ScholarshipCard({ data }) {
           </p>
           <div
             onClick={() => {
-              navigate(`/ScholarshipDetails/${data._id}`);
+              navigate(`/scholarshipdetails/${data._id}`);
             }}
             className="cursor-pointer text-center w-full text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-100 active:scale-95"
           >

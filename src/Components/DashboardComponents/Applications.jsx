@@ -7,11 +7,16 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import ReviewModal from "../ModalComponents/ReviewModal";
 import ApplyedDetailsForm from "../ModalComponents/ApplyedDetailsForm";
 import UpdateApplyedModal from "../ModalComponents/UpdateApplyedModal";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function Applications() {
   const [reviewModal, setReviewModal] = useState(false);
   const [reviewData, setReviewData] = useState({});
+  const [updateModal, setUpdateModal] = useState(false);
+  const [updateData, setUpdateData] = useState({});
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const {
     data: applicationsData,
@@ -36,21 +41,18 @@ export default function Applications() {
       console.log(e);
     }
   }
-  async function handelUpdateApplication(id) {
-    try {
-      await axiosSecure.patch(`/applyed/${id}`, {
-        status: "Pending",
-      });
-      refetch();
-    } catch (e) {
-      console.log(e);
-    }
-  }
+
   console.log("-->", isLoading, user, applicationsData);
   if (isLoading) return <h1>Loading...</h1>;
   return (
     <>
-      <UpdateApplyedModal />
+      {updateModal && (
+        <UpdateApplyedModal
+          refetch={refetch}
+          data={updateData}
+          setUpdateModal={setUpdateModal}
+        />
+      )}
       {reviewModal && (
         <ReviewModal data={reviewData} setReviewModal={setReviewModal} />
       )}
@@ -81,12 +83,24 @@ export default function Applications() {
                   applicationsData.length > 0 &&
                   applicationsData?.map((item, i) => (
                     <tr key={i + "application"} className="border-y-2">
-                      <td className="border-r-2 py-2">{item.universityName}</td>
-                      <td className="border-r-2">
-                        {item.scholarshipDetails[0].universityCity},{" "}
-                        {item.scholarshipDetails[0].universityCountry}{" "}
+                      <td className="border-r-2 py-2">
+                        {item?.universityName || (
+                          <span className="text-sm text-red-500">
+                            Update your Info
+                          </span>
+                        )}
                       </td>
-                      <td className="border-r-2">{item?.feedback}</td>
+                      <td className="border-r-2">
+                        {item?.scholarshipDetails[0].universityCity},{" "}
+                        {item?.scholarshipDetails[0].universityCountry}{" "}
+                      </td>
+                      <td className="border-r-2">
+                        {item?.feedback || (
+                          <span className="text-sm text-green-500">
+                            no feedback yet
+                          </span>
+                        )}
+                      </td>
                       <td className="border-r-2">
                         {item.scholarshipDetails[0].subjectCategory}
                       </td>
@@ -99,10 +113,17 @@ export default function Applications() {
                       <td className="border-r-2">
                         $ {item.scholarshipDetails[0].serviceCharge}
                       </td>
-                      <td className="border-r-2">{item.status}</td>
+                      <td className="border-r-2">
+                        {item.status || (
+                          <span className="text-sm text-red-500">
+                            Update your Info
+                          </span>
+                        )}
+                      </td>
 
                       <td className="flex gap-2 justify-evenly py-2 items-center">
                         <span
+                          title="Review"
                           onClick={() => {
                             setReviewModal(true);
                             setReviewData(item);
@@ -124,7 +145,15 @@ export default function Applications() {
                             />
                           </svg>
                         </span>
-                        <span className="cursor-pointer hover:text-blue-700">
+                        <span
+                          title="Details"
+                          onClick={() =>
+                            navigate(
+                              `/scholarshipdetails/${item?.scholarshipDetails[0]._id}`
+                            )
+                          }
+                          className="cursor-pointer hover:text-blue-700"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -141,7 +170,15 @@ export default function Applications() {
                           </svg>
                         </span>
                         <span
-                          onClick={() => handelUpdateApplication(item?._id)}
+                          title="Update"
+                          onClick={() => {
+                            if (item?.status === "Pending")
+                              return toast.warning(
+                                "You can't update pending application"
+                              );
+                            setUpdateData(item);
+                            setUpdateModal(true);
+                          }}
                           className="cursor-pointer hover:text-orange-600"
                         >
                           <svg
@@ -160,6 +197,7 @@ export default function Applications() {
                           </svg>
                         </span>
                         <span
+                          title="Delete"
                           onClick={() => handelDelete(item._id)}
                           className="cursor-pointer hover:text-red-600"
                         >

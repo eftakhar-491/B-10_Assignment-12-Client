@@ -4,6 +4,7 @@ import dl from "../assets/images/DL.png";
 import logo from "../assets/icon/logo.png";
 import { AuthContext } from "../Firebase/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
 const queryClient = new QueryClient();
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export default function Dashboard() {
   }, []);
   return (
     <>
+      <ToastContainer />
       <main>
         <div className="relative overflow-y-auto max-w-[1900px] mx-auto flex">
           {/* left section  */}

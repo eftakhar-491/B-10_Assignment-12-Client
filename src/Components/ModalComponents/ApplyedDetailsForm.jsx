@@ -64,7 +64,10 @@ export default function ApplyedDetailsForm({ data }) {
         <div className="max-w-[500px] w-full bg-white mt-[500px] mb-10 p-4 rounded-lg">
           <h1 className=" mb-4 flex justify-between text-xl font-Lora">
             Applycation Form
-            <span className="cursor-pointer active:scale-95">
+            <span
+              onClick={() => setApplyModal(false)}
+              className="cursor-pointer active:scale-95"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

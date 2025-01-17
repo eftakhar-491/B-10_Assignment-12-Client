@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { use } from "react";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { AuthContext } from "../../Firebase/AuthProvider";
 
-export default function UpdateApplyedModal() {
+export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
   const [uploading, setUploading] = useState(false);
-
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     phoneNumber: "",
     village: "",
@@ -14,6 +20,20 @@ export default function UpdateApplyedModal() {
     hscResult: "",
     studyGap: "",
   });
+  useEffect(() => {
+    setFormData({
+      phoneNumber: data.phoneNumber,
+      village: data.village,
+      district: data.district,
+      country: data.country,
+      gender: data.gender,
+      degree: data.degree,
+      sscResult: data.sscResult,
+      hscResult: data.hscResult,
+      studyGap: data.studyGap,
+      myImage: data?.myImage,
+    });
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -34,13 +54,31 @@ export default function UpdateApplyedModal() {
     setFormData({ ...formData, myImage: data.data.display_url });
     setUploading(false);
   }
+  async function handelUpdateApplication(e) {
+    e.preventDefault();
+
+    if (uploading) return toast.warning("Please Wait Image is Uploading");
+    try {
+      await axiosSecure.patch(
+        `/applyed/${data._id}?email=${user?.email}`,
+        formData
+      );
+      refetch();
+      setUpdateModal(false);
+    } catch (e) {
+      console.log(e);
+    }
+  }
   return (
     <>
       <section className=" absolute z-50 overflow-y-auto top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="max-w-[500px] w-full bg-white mt-[200px] mb-10 p-4 rounded-lg">
+        <div className="max-w-[500px] w-full bg-white mt-[400px] mb-10 p-4 rounded-lg">
           <h1 className=" mb-4 flex justify-between text-xl font-Lora">
             Update Applycation Form
-            <span className="cursor-pointer active:scale-95">
+            <span
+              onClick={() => setUpdateModal(false)}
+              className="cursor-pointer active:scale-95"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -57,14 +95,18 @@ export default function UpdateApplyedModal() {
               </svg>
             </span>
           </h1>
-          <form onSubmit={"handleApplySubmit"} className="space-y-4">
+          <form onSubmit={handelUpdateApplication} className="space-y-4">
             <div>
+              <img
+                className="w-32 h-32 object-cover rounded-full mx-auto"
+                src={formData?.myImage}
+                alt=""
+              />
               <label className="block text-sm font-medium mb-1">
                 Your Image
               </label>
               <input
                 name="photo"
-                required
                 type="file"
                 onChange={handelPhotoUpload}
                 className="w-full p-2 border border-gray-300 rounded"
@@ -203,7 +245,7 @@ export default function UpdateApplyedModal() {
               type="submit"
               className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
             >
-              Apply
+              Update Applycation Info
             </button>
           </form>
         </div>
