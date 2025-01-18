@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ScholarshipCard from "../Components/Shared/ScholarshipCard";
 import bg from "../Assets/images/bg.png";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 export default function AllScholarship() {
+  const [page, setPage] = useState(1);
   const {
     data: allScholarship,
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: ["allScholarships"],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_APIURL}/scholarship`);
+      const res = await axios.get(
+        `${import.meta.env.VITE_APIURL}/scholarship?page=${page}`
+      );
       return res.data;
     },
   });
+  useEffect(() => {
+    refetch();
+  }, [page]);
   return (
     <>
       <section className="mt-[62px]">
@@ -61,12 +68,60 @@ export default function AllScholarship() {
           </div>
         </div>
 
-        <div className="flex max-w-[1900px] mx-auto flex-wrap gap-4 px-[5%] justify-evenly mt-10">
+        <div className="min-h-[30vh] flex max-w-[1900px] mx-auto flex-wrap gap-8 px-[5%] justify-center mt-10">
           {isLoading && <p>Loading...</p>}
           {isError && <p>Something went wrong</p>}
-          {allScholarship?.map((scholarship, i) => (
-            <ScholarshipCard key={i + "all"} data={scholarship} />
-          ))}
+          {allScholarship?.length === 0 && <p>No Scholarship Found</p>}
+          {allScholarship.length > 0 &&
+            allScholarship?.map((scholarship, i) => (
+              <ScholarshipCard key={i + "all"} data={scholarship} />
+            ))}
+        </div>
+        <div>
+          <div className="flex justify-center mt-10">
+            <button
+              disabled={page == 1 ? true : false}
+              onClick={() => {
+                if (page > 1) setPage(page - 1);
+              }}
+              className="disabled:bg-gray-400 disabled:border-gray-400 px-4 py-2 mx-1 border-2 border-blue-400 rounded-md hover:bg-gray-200"
+            >
+              Previous
+            </button>
+            <button className="bg-blue-300 px-4 py-2 mx-1 border-2 border-blue-400 rounded-md hover:bg-gray-200">
+              {page}
+            </button>
+            {allScholarship.length > 0 && (
+              <>
+                <button
+                  disabled={allScholarship.length === 0 ? true : false}
+                  onClick={() => setPage(page + 1)}
+                  className="disabled:bg-gray-400 disabled:border-gray-400 px-4 py-2 mx-1 border-2 border-blue-400 rounded-md hover:bg-gray-200"
+                >
+                  {page + 1}
+                </button>
+                <button
+                  disabled={allScholarship.length === 0 ? true : false}
+                  onClick={() => setPage(page + 2)}
+                  className="disabled:bg-gray-400 disabled:border-gray-400 px-4 py-2 mx-1 border-2 border-blue-400 rounded-md hover:bg-gray-200"
+                >
+                  {page + 2} ...
+                </button>
+              </>
+            )}
+
+            <button
+              disabled={allScholarship.length === 0 ? true : false}
+              onClick={() => {
+                setPage(page + 1);
+                console.log(page);
+              }}
+              className="disabled:bg-gray-400 disabled:border-gray-400 px-4 py-2 mx-1 border-2 border-blue-400 rounded-md hover:bg-gray-200"
+            >
+              Next
+            </button>
+            {console.log(page)}
+          </div>
         </div>
       </section>
     </>
