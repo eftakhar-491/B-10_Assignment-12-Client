@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import StateContext from "./Context/StateContext";
 import { useState } from "react";
+import Footer from "./Components/Shared/Footer";
 const queryClient = new QueryClient();
 function App() {
   const [applyModal, setApplyModal] = useState(false);
@@ -17,6 +18,7 @@ function App() {
             <ToastContainer />
             <Nav />
             <Outlet />
+            <Footer />
           </AuthProvider>
         </StateContext.Provider>
       </QueryClientProvider>
