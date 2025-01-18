@@ -5,6 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import StateContext from "../../Context/StateContext";
+import { toast } from "react-toastify";
 
 export default function CheckoutForm({ id, setPaymentModal }) {
   const { user } = useContext(AuthContext);
@@ -54,15 +55,17 @@ export default function CheckoutForm({ id, setPaymentModal }) {
       });
     if (confirmError) {
       console.log("[error]", confirmError);
+      toast.error(confirmError.message);
     } else {
-      await axiosSecure.post("/applyed", {
+      toast.success("Payment Success");
+      await axiosSecure.post(`/applyed?email=${user?.email}`, {
         name: user?.displayName || "anonymous",
         email: user?.email,
         scholarshipId: id,
         paymentId: paymentIntent.id,
         paymentTime: paymentIntent.created,
       });
-      console.log("[PaymentIntent]", paymentIntent);
+
       setApplyModal(true);
       setPaymentModal(false);
       navigate(`/ScholarshipDetails/${id}`);

@@ -6,12 +6,14 @@ export default function ScholarshipCard({ data }) {
   const navigate = useNavigate();
   return (
     <>
-      <div className=" flex  items-start bg-white p-4 font-Roboto flex-col gap-2 rounded-lg w-[300px]">
-        <img
-          className="mx-auto"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQBwuddBfDYzFHfvCjSk2dHhn1KL_weVdxIA&s"
-          alt=""
-        />
+      <div className=" flex border items-start bg-white p-4 font-Roboto flex-col gap-2 rounded-lg w-[300px]">
+        <div className="h-[250px] rounded-lg ">
+          <img
+            className="mx-auto rounded-lg h-[250px] object-cover"
+            src={data?.universityImage}
+            alt=""
+          />
+        </div>
         <div className="w-full flex flex-col justify-between  h-full">
           <h1 className="text-xl">{data?.universityName} </h1>
           <p className="flex gap-1 items-center mt-2">

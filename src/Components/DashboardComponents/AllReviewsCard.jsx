@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { useContext } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Firebase/AuthProvider";
+import { toast } from "react-toastify";
 
 export default function AllReviewsCard({ data, refetch }) {
   const axiosSecure = useAxiosSecure();
@@ -11,10 +12,10 @@ export default function AllReviewsCard({ data, refetch }) {
       const res = await axiosSecure.delete(
         `/reviews/${id}?email=${user?.email}`
       );
+      toast.success("Review Deleted");
       refetch();
-      console.log(res);
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong");
     }
   }
   return (

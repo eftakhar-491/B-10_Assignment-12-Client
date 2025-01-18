@@ -61,11 +61,11 @@ export default function ScholarshipDetails() {
     <>
       {applyModal && <ApplyedDetailsForm data={scholarshipDetails} />}
       <section className="font-Roboto mt-40">
-        <div className="max-w-[1000px] mx-auto mt-[80px] bg-white p-5 rounded-lg">
-          <div className="flex flex-col md:flex-row md:items-center gap-5">
+        <div className="border max-w-[1000px] mx-auto mt-[80px] bg-white p-5 rounded-lg">
+          <div className="mb-6 flex flex-col md:flex-row md:items-center gap-5">
             <img
               className="md:w-[300px] rounded-lg"
-              src="https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg"
+              src={scholarshipDetails?.universityImage}
               alt=""
             />
             <div>
@@ -92,6 +92,7 @@ export default function ScholarshipDetails() {
               </p>
             </div>
           </div>
+          <hr />
           <div className="mt-6">
             <p className="text-sm border-2 border-blue-700 w-fit px-4 rounded-3xl">
               {scholarshipDetails?.scholarshipCategory}
@@ -178,7 +179,6 @@ export default function ScholarshipDetails() {
             </div>{" "}
           </>
         )}
-        {/* <ReviewShowCard /> */}
       </section>
     </>
   );

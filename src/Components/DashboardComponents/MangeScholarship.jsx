@@ -6,8 +6,10 @@ import { useQuery } from "@tanstack/react-query";
 import ManageSchocalshipModal from "../ModalComponents/ManageSchocalshipModal";
 import { toast } from "react-toastify";
 import StateContext from "../../Context/StateContext";
+import { useNavigate } from "react-router-dom";
 
 export default function MangeScholarship() {
+  const navigate = useNavigate();
   const [manageScholarshipModal, setManageScholarshipModal] = useState(false);
   const [manageScholarshipData, setManageScholarshipData] = useState({});
   const { user } = useContext(AuthContext);
@@ -75,6 +77,9 @@ export default function MangeScholarship() {
 
                     <td className="flex gap-2 justify-evenly py-2 items-center">
                       <span
+                        onClick={() =>
+                          navigate("/scholarshipDetails/" + item._id)
+                        }
                         title="Show Details"
                         className="hover:text-blue-700 cursor-pointer"
                       >
