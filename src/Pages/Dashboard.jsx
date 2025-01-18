@@ -18,7 +18,7 @@ export default function Dashboard() {
     ) {
       navigate("/dashboard/profile");
     }
-  }, []);
+  }, [location]);
   return (
     <>
       <ToastContainer />

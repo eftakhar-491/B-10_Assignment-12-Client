@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/icon/logo.png";
 import profile from "../../assets/icon/profile.gif";
@@ -6,6 +6,8 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import { toast } from "react-toastify";
 export default function Nav() {
   const { logOut, user } = useContext(AuthContext);
+  const [menu, setMenu] = useState(false);
+  const [profileMenu, setProfileMenu] = useState(false);
   async function handelLogout() {
     try {
       await logOut();
@@ -20,7 +22,10 @@ export default function Nav() {
         <div className="relative max-w-[1900px] px-4 md:px-[5%] mx-auto flex items-center justify-between py-3">
           <h1 className="text-xl md:text-2xl lg:text-3xl flex items-center gap-2">
             <img className="hidden md:block" src={logo} alt="logo" />
-            <span className="cursor-pointer active:scale-95 md:hidden">
+            <span
+              onClick={() => setMenu((p) => !p)}
+              className="cursor-pointer active:scale-95 md:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -42,24 +47,28 @@ export default function Nav() {
           </h1>
           {/* mobile menu list */}
 
-          <ul className="flex md:hidden flex-col absolute top-12 bg-blue-400/60 backdrop-blur-md p-4 rounded-lg z-50 gap-4">
-            <NavLink
-              to={"/"}
-              className={({ isActive }) =>
-                isActive ? "border-b-2 border-blue-800 font-semibold" : ""
-              }
+          {menu && (
+            <ul
+              className={`flex md:hidden flex-col absolute top-12 bg-blue-400/60 backdrop-blur-md p-4 rounded-lg z-50 gap-4`}
             >
-              <li>Home</li>
-            </NavLink>
-            <NavLink
-              to={"/scholarships"}
-              className={({ isActive }) =>
-                isActive ? "border-b-2 border-blue-800 font-semibold" : ""
-              }
-            >
-              <li>All Scholarship</li>
-            </NavLink>
-          </ul>
+              <NavLink
+                to={"/"}
+                className={({ isActive }) =>
+                  isActive ? "border-b-2 border-blue-800 font-semibold" : ""
+                }
+              >
+                <li>Home</li>
+              </NavLink>
+              <NavLink
+                to={"/scholarships"}
+                className={({ isActive }) =>
+                  isActive ? "border-b-2 border-blue-800 font-semibold" : ""
+                }
+              >
+                <li>All Scholarship</li>
+              </NavLink>
+            </ul>
+          )}
 
           <div className="flex items-center gap-4">
             <ul className="md:flex hidden items-center gap-4">
@@ -78,6 +87,14 @@ export default function Nav() {
                 }
               >
                 <li>All Scholarship</li>
+              </NavLink>
+              <NavLink
+                to={"/dashboard"}
+                className={({ isActive }) =>
+                  isActive ? "border-b-2 border-blue-800 font-semibold" : ""
+                }
+              >
+                <li>Dashboard</li>
               </NavLink>
             </ul>
             <div className="flex items-center gap-4">
@@ -98,13 +115,30 @@ export default function Nav() {
                   LogOut
                 </button>
               )}
-              <div className="border w-10 h-10 rounded-full overflow-hidden">
+              <div
+                onClick={() => setProfileMenu((p) => !p)}
+                className="cursor-pointer active:scale-95 border w-10 h-10 rounded-full overflow-hidden"
+              >
                 {user ? (
                   <img src={user?.photoURL} alt="" />
                 ) : (
                   <img src={profile} alt="" />
                 )}
               </div>
+              {profileMenu && (
+                <ul
+                  className={`right-3 flex md:hidden flex-col absolute top-14 bg-blue-400/60 backdrop-blur-md p-4 rounded-lg z-50 gap-4`}
+                >
+                  <NavLink
+                    to={"/dashboard"}
+                    className={({ isActive }) =>
+                      isActive ? "border-b-2 border-blue-800 font-semibold" : ""
+                    }
+                  >
+                    <li>Dashboard</li>
+                  </NavLink>
+                </ul>
+              )}
             </div>
           </div>
         </div>

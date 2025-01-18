@@ -15,10 +15,12 @@ import AppliedScholarship from "../Components/DashboardComponents/appliedScholar
 import AuthProvider from "../Firebase/AuthProvider";
 import ScholarshipDetails from "../Pages/ScholarshipDetails";
 import Payment from "../Pages/Payment";
+import Error from "../Pages/Error";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",

@@ -2,8 +2,10 @@ import React from "react";
 import ScholarshipCard from "../Shared/ScholarshipCard";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function TopScholarship() {
+  const navigate = useNavigate();
   const {
     data: topScholarship,
     isLoading,
@@ -36,6 +38,14 @@ export default function TopScholarship() {
           {topScholarship?.map((scholarship, i) => (
             <ScholarshipCard key={i + "t"} data={scholarship} />
           ))}
+        </div>
+        <div>
+          <button
+            onClick={() => navigate("/scholarships")}
+            className="text-lg border-2 mx-auto border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-200 block active:scale-95"
+          >
+            -- Show All Scholarship --
+          </button>
         </div>
       </section>
     </>
