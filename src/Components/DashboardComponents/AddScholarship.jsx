@@ -3,6 +3,7 @@ import OpenDrowerBTN from "./OpenDrowerBTN";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Firebase/AuthProvider";
+import StateContext from "../../Context/StateContext";
 
 export default function AddScholarship() {
   const { user } = useContext(AuthContext);
@@ -24,6 +25,7 @@ export default function AddScholarship() {
   });
 
   const [uploading, setUploading] = useState(false);
+  const { setSideBar } = useContext(StateContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -82,7 +84,7 @@ export default function AddScholarship() {
   return (
     <>
       <section className="md:ml-[320px] bg-white h-content py-10 ">
-        <OpenDrowerBTN />
+        <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="max-w-4xl mx-auto p-6  bg-gray-100 rounded-lg shadow-md">
           <h1 className="text-2xl font-bold mb-6 text-center">
             Add New Scholarship

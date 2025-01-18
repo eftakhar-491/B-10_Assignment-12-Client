@@ -3,6 +3,7 @@ import Rating from "@mui/material/Rating";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 export default function ReviewModal({ data, setReviewModal }) {
   const [value, setValue] = useState(1);
   const { user } = useContext(AuthContext);
@@ -21,9 +22,13 @@ export default function ReviewModal({ data, setReviewModal }) {
       userImage: user?.photoURL,
       userName: user?.displayName,
     };
-    const res = await axiosSecure.post(`/reviews?email=${user?.email}`, obj);
-    console.log(obj);
-    setReviewModal(false);
+    try {
+      const res = await axiosSecure.post(`/reviews?email=${user?.email}`, obj);
+      toast.success("Review Submitted");
+      setReviewModal(false);
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
   }
   return (
     <>

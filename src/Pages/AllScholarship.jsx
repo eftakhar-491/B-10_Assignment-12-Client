@@ -88,13 +88,11 @@ export default function AllScholarship() {
             </form>
           </div>
         </div>
-
+        {console.log(allScholarship)}
         <div className="min-h-[30vh] flex max-w-[1900px] mx-auto flex-wrap gap-8 px-[5%] justify-center mt-10">
           {isLoading && <p>Loading...</p>}
           {isError && <p>Something went wrong</p>}
-          {isLoading && allScholarship?.length === 0 && (
-            <p>No Scholarship Found</p>
-          )}
+          {allScholarship?.length === 0 && <p>No Scholarship Found</p>}
           {allScholarship?.length > 0 &&
             !isLoading &&
             !isError &&

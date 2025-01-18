@@ -4,9 +4,12 @@ import OpenDrowerBTN from "./OpenDrowerBTN";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import StateContext from "../../Context/StateContext";
 
 export default function AllReviews() {
   const { user } = useContext(AuthContext);
+  const { setSideBar } = useContext(StateContext);
+
   const axiosSecure = useAxiosSecure();
   const { data: allreviews, refetch } = useQuery({
     queryKey: ["allreviews"],
@@ -16,11 +19,11 @@ export default function AllReviews() {
       return res.data;
     },
   });
-  console.log("allreviews-->", allreviews);
+
   return (
     <>
       <section className="md:ml-[320px] font-Roboto">
-        <OpenDrowerBTN />
+        <OpenDrowerBTN setSideBar={setSideBar} />
         <div>
           <h1 className="text-3xl pt-9 font-Lora font-semibold text-center">
             All reviews

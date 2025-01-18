@@ -32,7 +32,7 @@ export default function TopScholarship() {
             goals.
           </p>
         </div>
-        <div className="flex max-w-[1900px] mx-auto flex-wrap gap-4 px-[5%] justify-evenly mt-10">
+        <div className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1900px] mx-auto gap-4 px-[5%] mt-10">
           {isLoading && <p>Loading...</p>}
           {isError && <p>Something went wrong</p>}
           {topScholarship?.map((scholarship, i) => (

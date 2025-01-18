@@ -27,7 +27,7 @@ export default function ReviewShowCard({ data }) {
               {data?.universityName}
             </h2>
             <p className="text-lg font-medium flex items-center gap-1">
-              {data?.scholarshipDetails[0]?.rating}
+              {data?.rating}.0
               <span className="text-yellow-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ export default function ReviewShowCard({ data }) {
           <p className="text-sm bg-blue-100 px-4 py-1 border-2 border-blue-800 w-fit rounded-2xl">
             {data?.scholarshipDetails[0].subjectCategory}
           </p>
-          <p className="p-3 text-lg mt-0">
+          <p className=" text-lg mt-3">
             <span className="font-semibold">comment : </span>
             {data?.comment}
           </p>

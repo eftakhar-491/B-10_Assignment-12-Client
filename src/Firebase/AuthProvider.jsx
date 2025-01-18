@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { app } from "./Firebase.init";
 import axios from "axios";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -60,12 +61,16 @@ const AuthProvider = ({ children }) => {
         );
 
         localStorage.setItem("token", res.data.token);
-        await axios.post(`${import.meta.env.VITE_APIURL}/users`, {
-          email: currentUser.email,
-          name: currentUser.displayName,
-          imageUrl: currentUser.photoURL,
-          role: "User",
-        });
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_APIURL}/users`,
+          {
+            email: currentUser.email,
+            name: currentUser.displayName,
+            imageUrl: currentUser.photoURL,
+            role: "User",
+          }
+        );
+        setUser({ ...currentUser, userDB: { ...data } });
       } else {
         localStorage.removeItem("token");
         // await axios.post(

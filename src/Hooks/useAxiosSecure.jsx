@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../Firebase/AuthProvider";
+
 import { toast } from "react-toastify";
+import { AuthContext } from "../Firebase/AuthProvider";
+
 export const axiosSecure = axios.create({
   baseURL: import.meta.env.VITE_APIURL,
   // withCredentials: true,

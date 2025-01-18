@@ -1,9 +1,12 @@
 import React from "react";
 
-export default function OpenDrowerBTN() {
+export default function OpenDrowerBTN({ setSideBar }) {
   return (
     <>
-      <button className="absolute top-4 left-4 cursor-pointer active:scale-95">
+      <button
+        onClick={() => setSideBar(true)}
+        className="md:hidden block absolute top-4 left-4 cursor-pointer active:scale-95"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

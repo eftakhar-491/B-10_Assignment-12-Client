@@ -63,15 +63,16 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
         `/applyed/${data._id}?email=${user?.email}`,
         formData
       );
+      toast.success("Application Updated Successfully");
       refetch();
       setUpdateModal(false);
     } catch (e) {
-      console.log(e);
+      toast.error("Something went wrong! Please try again");
     }
   }
   return (
     <>
-      <section className=" absolute z-50 overflow-y-auto top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+      <section className=" fixed z-50 overflow-y-auto top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
         <div className="max-w-[500px] w-full bg-white mt-[400px] mb-10 p-4 rounded-lg">
           <h1 className=" mb-4 flex justify-between text-xl font-Lora">
             Update Applycation Form

@@ -146,29 +146,38 @@ export default function ScholarshipDetails() {
             id={scholarshipDetails?._id}
           />
         )}
-        <div className=" max-w-[1000px] mx-auto mt-5 bg-white rounded-lg">
-          <Swiper
-            spaceBetween={0}
-            centeredSlides={true}
-            slidesPerView={1}
-            autoplay={{
-              delay: 2000,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
-            className="mySwiper"
-          >
-            {allReviews?.map((item, i) => (
-              <SwiperSlide key={i + "reviewDetails"}>
-                <ReviewShowCard data={item} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        {allReviews?.length === 0 ? (
+          ""
+        ) : (
+          <>
+            <h1 className="text-2xl font-Lora font-semibold text-center mt-10">
+              Reviews
+            </h1>
+            <div className=" max-w-[1000px] mx-auto mt-5 bg-white rounded-lg">
+              <Swiper
+                spaceBetween={0}
+                centeredSlides={true}
+                slidesPerView={1}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation={true}
+                modules={[Autoplay, Pagination, Navigation]}
+                className="mySwiper"
+              >
+                {allReviews?.map((item, i) => (
+                  <SwiperSlide key={i + "reviewDetails"}>
+                    <ReviewShowCard data={item} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>{" "}
+          </>
+        )}
         {/* <ReviewShowCard /> */}
       </section>
     </>

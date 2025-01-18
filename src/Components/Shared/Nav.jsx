@@ -89,6 +89,7 @@ export default function Nav() {
                 <li>All Scholarship</li>
               </NavLink>
               <NavLink
+                state={{ his: "/dashboard" }}
                 to={"/dashboard"}
                 className={({ isActive }) =>
                   isActive ? "border-b-2 border-blue-800 font-semibold" : ""

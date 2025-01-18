@@ -30,7 +30,7 @@ export default function Login() {
   }
   return (
     <>
-      <section className="my-16">
+      <section className="mt-24 -mb-16">
         <div
           style={{
             backgroundImage: `linear-gradient(

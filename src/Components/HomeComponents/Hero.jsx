@@ -11,7 +11,9 @@ import h2 from "../../assets/images/h2.png";
 import h3 from "../../assets/images/h3.png";
 // import "./styles.css";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <>
       <header className="mt-[61px]">
@@ -50,7 +52,10 @@ export default function Hero() {
                     scholarships with our innovative platform. Helping students
                     and administrators achieve success seamlessly.
                   </p>
-                  <button className="text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-950 active:scale-95">
+                  <button
+                    onClick={() => navigate("/scholarships")}
+                    className="text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-950 active:scale-95"
+                  >
                     See All Scholarship
                   </button>
                 </div>
@@ -70,7 +75,10 @@ export default function Hero() {
                     scholarships with our innovative platform. Helping students
                     and administrators achieve success seamlessly
                   </p>
-                  <button className="text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-950 active:scale-95">
+                  <button
+                    onClick={() => navigate("/scholarships")}
+                    className="text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-950 active:scale-95"
+                  >
                     See All Scholarship
                   </button>
                 </div>
@@ -89,7 +97,10 @@ export default function Hero() {
                     Empowering you to focus on what matters most—achieving
                     academic excellence.
                   </p>
-                  <button className="text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-950 active:scale-95">
+                  <button
+                    onClick={() => navigate("/scholarships")}
+                    className="text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-950 active:scale-95"
+                  >
                     See All Scholarship
                   </button>
                 </div>

@@ -5,11 +5,14 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import ManageSchocalshipModal from "../ModalComponents/ManageSchocalshipModal";
 import { toast } from "react-toastify";
+import StateContext from "../../Context/StateContext";
 
 export default function MangeScholarship() {
   const [manageScholarshipModal, setManageScholarshipModal] = useState(false);
   const [manageScholarshipData, setManageScholarshipData] = useState({});
   const { user } = useContext(AuthContext);
+  const { setSideBar } = useContext(StateContext);
+
   const axiosSecure = useAxiosSecure();
   const { data: manageScholarship, refetch } = useQuery({
     queryKey: ["manageScholarship"],
@@ -44,7 +47,7 @@ export default function MangeScholarship() {
         />
       )}
       <section className="md:ml-[320px]  bg-white min-h-full">
-        <OpenDrowerBTN />
+        <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="px-4">
           <h1 className="text-3xl pt-9 font-Lora font-semibold text-center">
             Manage Scholarship

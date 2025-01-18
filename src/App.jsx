@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Nav from "./Components/Shared/Nav";
-import "./App.css";
+
 import AuthProvider from "./Firebase/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -10,6 +10,7 @@ import Footer from "./Components/Shared/Footer";
 const queryClient = new QueryClient();
 function App() {
   const [applyModal, setApplyModal] = useState(false);
+
   return (
     <>
       <QueryClientProvider client={queryClient}>

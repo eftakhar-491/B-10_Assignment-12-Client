@@ -74,7 +74,7 @@ export default function Register() {
   }
   return (
     <>
-      <section className="my-16">
+      <section className="mt-24 -mb-24">
         <div
           style={{
             backgroundImage: `linear-gradient(

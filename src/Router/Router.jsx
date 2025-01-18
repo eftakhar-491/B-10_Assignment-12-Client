@@ -16,6 +16,9 @@ import AuthProvider from "../Firebase/AuthProvider";
 import ScholarshipDetails from "../Pages/ScholarshipDetails";
 import Payment from "../Components/Shared/Payment";
 import Error from "../Pages/Error";
+import AuthProtect from "../Components/ProtectRoute/AuthProtect";
+import ComProtect from "../Components/ProtectRoute/ComProtect";
+import RoleProtect from "../Components/ProtectRoute/RoleProtect";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,19 +35,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/scholarshipdetails/:id",
-        element: <ScholarshipDetails />,
+        element: (
+          <ComProtect>
+            <ScholarshipDetails />,
+          </ComProtect>
+        ),
       },
-      {
-        path: "/payment/:id",
-        element: <Payment />,
-      },
+
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <AuthProtect>
+            <Login />,
+          </AuthProtect>
+        ),
       },
       {
         path: "/register",
-        element: <Register />,
+        element: (
+          <AuthProtect>
+            <Register />,
+          </AuthProtect>
+        ),
       },
     ],
   },
@@ -52,37 +64,67 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <AuthProvider>
-        <Dashboard />
+        <ComProtect>
+          <Dashboard />
+        </ComProtect>
       </AuthProvider>
     ),
     children: [
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <RoleProtect role={["User", "Moderator"]}>
+            <Profile />,
+          </RoleProtect>
+        ),
       },
       {
         path: "applications",
-        element: <Applications />,
+        element: (
+          <RoleProtect role={["User"]}>
+            <Applications />,
+          </RoleProtect>
+        ),
       },
       {
         path: "reviews",
-        element: <Reviews />,
+        element: (
+          <RoleProtect role={["User"]}>
+            <Reviews />,
+          </RoleProtect>
+        ),
       },
       {
         path: "add-scholarship",
-        element: <AddScholarship />,
+        element: (
+          <RoleProtect role={["Moderator"]}>
+            <AddScholarship />,
+          </RoleProtect>
+        ),
       },
       {
         path: "mange-scholarship",
-        element: <MangeScholarship />,
+        element: (
+          <RoleProtect role={["Moderator"]}>
+            <MangeScholarship />,
+          </RoleProtect>
+        ),
       },
       {
         path: "all-reviews",
-        element: <AllReviews />,
+        element: (
+          <RoleProtect role={["Moderator"]}>
+            <AllReviews />,
+          </RoleProtect>
+        ),
       },
       {
         path: "applied-scholarship",
-        element: <AppliedScholarship />,
+        element: (
+          <RoleProtect role={["Moderator"]}>
+            <AppliedScholarship />,
+          </RoleProtect>
+        ),
       },
     ],
   },
