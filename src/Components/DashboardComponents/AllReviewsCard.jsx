@@ -18,7 +18,7 @@ export default function AllReviewsCard({ data, refetch }) {
     }
   }
   return (
-    <div className="flex-1 min-w-[300px] max-w-[500px] bg-white p-4 rounded-lg ">
+    <div className="flex-1 min-w-[340px] max-w-[500px] bg-white p-4 rounded-lg ">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <img
@@ -27,7 +27,7 @@ export default function AllReviewsCard({ data, refetch }) {
             alt=""
           />
           <div>
-            <h2 className="text-xl font-semibold">{data?.userName}</h2>
+            <h2 className="text-sm font-semibold">{data?.userName}</h2>
             <p className="text-sm font-medium">
               {moment(data?.reviewDate).format("MM-DD-YYYY")}
             </p>

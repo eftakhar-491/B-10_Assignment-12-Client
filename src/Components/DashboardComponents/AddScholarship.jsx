@@ -55,6 +55,7 @@ export default function AddScholarship() {
         scholarshipPostDate: Date.now(),
         postedBy: user.email,
         rating: 0,
+        totalReview: 0,
       });
       toast.success("Scholarship Added Successfully");
       setFormData({

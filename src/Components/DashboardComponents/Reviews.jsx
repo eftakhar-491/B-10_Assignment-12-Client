@@ -79,7 +79,7 @@ export default function Reviews() {
                     </td>
                     <td className="border-r-2">{review?.comment}</td>
                     <td className="border-r-2">
-                      {moment(review?.reviewDate).format("MM - DD - YYYY")}
+                      {moment(review?.reviewDate).format("MM-DD-YYYY")}
                     </td>
 
                     <td className="flex gap-2 justify-evenly py-2 items-center">

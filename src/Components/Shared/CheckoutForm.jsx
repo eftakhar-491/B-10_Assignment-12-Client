@@ -6,7 +6,7 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import StateContext from "../../Context/StateContext";
 
-export default function CheckoutForm({ id }) {
+export default function CheckoutForm({ id, setPaymentModal }) {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const stripe = useStripe();
@@ -64,6 +64,7 @@ export default function CheckoutForm({ id }) {
       });
       console.log("[PaymentIntent]", paymentIntent);
       setApplyModal(true);
+      setPaymentModal(false);
       navigate(`/ScholarshipDetails/${id}`);
     }
   };

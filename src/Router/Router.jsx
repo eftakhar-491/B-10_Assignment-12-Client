@@ -14,7 +14,7 @@ import AllReviews from "../Components/DashboardComponents/AllReviews";
 import AppliedScholarship from "../Components/DashboardComponents/appliedScholarship";
 import AuthProvider from "../Firebase/AuthProvider";
 import ScholarshipDetails from "../Pages/ScholarshipDetails";
-import Payment from "../Pages/Payment";
+import Payment from "../Components/Shared/Payment";
 import Error from "../Pages/Error";
 const router = createBrowserRouter([
   {

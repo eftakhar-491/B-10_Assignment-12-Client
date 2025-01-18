@@ -26,7 +26,7 @@ export default function AllReviews() {
             All reviews
           </h1>
         </div>
-        <div className="flex justify-between p-4 flex-wrap gap-5 mt-7">
+        <div className="p-4 justify-center flex flex-wrap gap-4  mt-7">
           {allreviews?.map((review) => (
             <AllReviewsCard key={review._id} data={review} refetch={refetch} />
           ))}

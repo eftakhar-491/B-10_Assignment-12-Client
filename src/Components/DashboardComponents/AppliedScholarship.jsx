@@ -82,16 +82,34 @@ export default function AppliedScholarship() {
                       />
                     </td>
                     <td className="border-r-2 py-2">{data?.name}</td>
-                    <td className="border-r-2">{data?.universityName}</td>
-                    <td className="border-r-2">{data?.scholarshipCategory}</td>
+                    <td className="border-r-2">
+                      {data?.universityName || (
+                        <span className="text-red-600">
+                          "apply form not field"
+                        </span>
+                      )}
+                    </td>
+                    <td className="border-r-2">
+                      {data?.scholarshipCategory || (
+                        <span className="text-red-600">
+                          "apply form not field"
+                        </span>
+                      )}
+                    </td>
 
                     <td className="border-r-2">
                       <div className="flex justify-between">
-                        {data?.status}
+                        {data?.status || (
+                          <span className="text-red-600">
+                            "apply form not field"
+                          </span>
+                        )}
                         <span
                           onClick={() => {
-                            setStatusModal(true);
-                            setStatusData(data);
+                            if (data.status) {
+                              setStatusModal(true);
+                              setStatusData(data);
+                            }
                           }}
                           title="Edit Status"
                           className="hover:text-blue-600  cursor-pointer"

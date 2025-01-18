@@ -53,11 +53,13 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         setLoading(true);
-        await axios.post(
+        const res = await axios.post(
           `${import.meta.env.VITE_APIURL}/jwt`,
-          { email: currentUser?.email },
-          { withCredentials: true }
+          { email: currentUser?.email }
+          // { withCredentials: true }
         );
+
+        localStorage.setItem("token", res.data.token);
         await axios.post(`${import.meta.env.VITE_APIURL}/users`, {
           email: currentUser.email,
           name: currentUser.displayName,
@@ -65,11 +67,12 @@ const AuthProvider = ({ children }) => {
           role: "User",
         });
       } else {
-        await axios.post(
-          `${import.meta.env.VITE_APIURL}/logout`,
-          {},
-          { withCredentials: true }
-        );
+        localStorage.removeItem("token");
+        // await axios.post(
+        //   `${import.meta.env.VITE_APIURL}/logout`,
+        //   {},
+        //   { withCredentials: true }
+        // );
       }
 
       setLoading(false);
