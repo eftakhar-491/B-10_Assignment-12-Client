@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { AuthContext } from "../../Firebase/AuthProvider";
 
-export default function FeedbackModal() {
+export default function FeedbackModal({ data, setFeedbackModal }) {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  async function handelFeedbackSubmit(e) {
+    e.preventDefault();
+    console.log("Feedback Submitted-->", data);
+    setFeedbackModal(false);
+    await axiosSecure.put(
+      `/applyed/feedback/${data?._id}?email=${user?.email}`,
+      {
+        feedback: e.target.feedback.value,
+      }
+    );
+  }
   return (
     <>
       <section className="absolute z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
@@ -24,11 +39,10 @@ export default function FeedbackModal() {
               </svg>
             </span>
           </h1>
-          <form>
+          <form onSubmit={handelFeedbackSubmit}>
             <textarea
               placeholder="Write your feedback here..."
-              name=""
-              id=""
+              name="feedback"
               rows={5}
               className="border-2 mt-2 w-full pl-4"
             ></textarea>

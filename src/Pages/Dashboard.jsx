@@ -206,7 +206,8 @@ export default function Dashboard() {
               ) : (
                 ""
               )}
-              {user?.userDB?.role === "Moderator" && (
+              {user?.userDB?.role === "Moderator" ||
+              user?.userDB?.role === "Admin" ? (
                 <NavLink
                   to={"/dashboard/add-scholarship"}
                   className={({ isActive }) =>
@@ -231,7 +232,10 @@ export default function Dashboard() {
                     Add Scholarship
                   </li>
                 </NavLink>
+              ) : (
+                ""
               )}
+
               {user?.userDB?.role === "Moderator" && (
                 <NavLink
                   to={"/dashboard/mange-scholarship"}

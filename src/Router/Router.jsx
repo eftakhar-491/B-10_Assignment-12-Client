@@ -97,7 +97,7 @@ const router = createBrowserRouter([
       {
         path: "add-scholarship",
         element: (
-          <RoleProtect role={["Moderator"]}>
+          <RoleProtect role={["Moderator", "Admin"]}>
             <AddScholarship />,
           </RoleProtect>
         ),

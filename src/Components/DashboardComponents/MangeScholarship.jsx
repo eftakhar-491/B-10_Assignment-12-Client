@@ -7,6 +7,7 @@ import ManageSchocalshipModal from "../ModalComponents/ManageSchocalshipModal";
 import { toast } from "react-toastify";
 import StateContext from "../../Context/StateContext";
 import { useNavigate } from "react-router-dom";
+import l from "../../assets/images/loading.gif";
 
 export default function MangeScholarship() {
   const navigate = useNavigate();
@@ -16,7 +17,11 @@ export default function MangeScholarship() {
   const { setSideBar } = useContext(StateContext);
 
   const axiosSecure = useAxiosSecure();
-  const { data: manageScholarship, refetch } = useQuery({
+  const {
+    data: manageScholarship,
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["manageScholarship"],
     enabled: user?.email ? true : false,
     queryFn: async () => {
@@ -67,6 +72,14 @@ export default function MangeScholarship() {
                 </tr>
               </thead>
               <tbody className="">
+                {isLoading && <img src={l} alt="" />}
+                {manageScholarship?.length === 0 && (
+                  <tr>
+                    <td colSpan="6" className="text-center text-red-500 py-5">
+                      No Scholarship Found
+                    </td>
+                  </tr>
+                )}
                 {manageScholarship?.map((item, i) => (
                   <tr key={"manage" + i} className="border-y-2">
                     <td className="border-r-2 py-2">{item?.scholarshipName}</td>

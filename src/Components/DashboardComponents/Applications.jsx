@@ -108,7 +108,11 @@ export default function Applications() {
                           {item?.scholarshipDetails[0].universityCountry}{" "}
                         </td>
                         <td className="border-r-2">
-                          {item?.feedback || (
+                          {item?.feedback ? (
+                            <span className="text-sm text-blue-500">
+                              {item?.feedback}
+                            </span>
+                          ) : (
                             <span className="text-sm text-green-500">
                               no feedback yet
                             </span>
@@ -185,12 +189,14 @@ export default function Applications() {
                           <span
                             title="Update"
                             onClick={() => {
-                              if (!item?.status === "Pending")
-                                return toast.warning(
-                                  "You can't update pending application"
+                              if (item?.status === "Pending") {
+                                setUpdateData(item);
+                                setUpdateModal(true);
+                              } else {
+                                toast.warning(
+                                  `You can't update ${item?.status} application`
                                 );
-                              setUpdateData(item);
-                              setUpdateModal(true);
+                              }
                             }}
                             className="cursor-pointer hover:text-orange-600"
                           >
