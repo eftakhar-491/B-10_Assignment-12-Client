@@ -4,9 +4,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import StateContext from "../../Context/StateContext";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 export default function AddScholarship() {
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const [formData, setFormData] = useState({
     scholarshipName: "",
     universityName: "",
@@ -52,7 +54,7 @@ export default function AddScholarship() {
       return toast.warning("Please Wait Image is Uploading");
     }
     try {
-      await axios.post("http://localhost:5000/scholarships", {
+      await axiosSecure.post(`/scholarships?email=${user?.email}`, {
         ...formData,
         scholarshipPostDate: Date.now(),
         postedBy: user.email,

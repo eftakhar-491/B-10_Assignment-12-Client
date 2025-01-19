@@ -11,7 +11,6 @@ import Reviews from "../Components/DashboardComponents/Reviews";
 import AddScholarship from "../Components/DashboardComponents/AddScholarship";
 import MangeScholarship from "../Components/DashboardComponents/MangeScholarship";
 import AllReviews from "../Components/DashboardComponents/AllReviews";
-import AppliedScholarship from "../Components/DashboardComponents/appliedScholarship";
 import AuthProvider from "../Firebase/AuthProvider";
 import ScholarshipDetails from "../Pages/ScholarshipDetails";
 import Payment from "../Components/Shared/Payment";
@@ -19,6 +18,8 @@ import Error from "../Pages/Error";
 import AuthProtect from "../Components/ProtectRoute/AuthProtect";
 import ComProtect from "../Components/ProtectRoute/ComProtect";
 import RoleProtect from "../Components/ProtectRoute/RoleProtect";
+import AppliedScholarship from "../Components/DashboardComponents/AppliedScholarship";
+import AdminProfile from "../Components/DashboardComponents/AdminProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -123,6 +124,14 @@ const router = createBrowserRouter([
         element: (
           <RoleProtect role={["Moderator"]}>
             <AppliedScholarship />,
+          </RoleProtect>
+        ),
+      },
+      {
+        path: "admin-profile",
+        element: (
+          <RoleProtect role={["Admin"]}>
+            <AdminProfile />
           </RoleProtect>
         ),
       },
