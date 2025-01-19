@@ -41,7 +41,7 @@ const Faqs = () => {
   ];
 
   return (
-    <section className={` mt-20 bg-white py-36`}>
+    <section className={` mt-5 bg-white -mb-12 pt-10`}>
       <div className="container mx-auto px-4 w-11/12 lg:w-4/5">
         <h2 className="text-3xl font-bold text-center  mb-6">
           Frequently Asked Questions

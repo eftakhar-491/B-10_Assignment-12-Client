@@ -42,7 +42,7 @@ export default function TopScholarship() {
         <div>
           <button
             onClick={() => navigate("/scholarships")}
-            className="text-lg border-2 mx-auto border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-200 block active:scale-95"
+            className="text-lg border-2 mb-10 mx-auto border-blue-700 px-4 py-1 rounded-lg mt-10 hover:bg-blue-200 block active:scale-95"
           >
             -- Show All Scholarship --
           </button>

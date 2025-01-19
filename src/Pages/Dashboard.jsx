@@ -20,6 +20,7 @@ export default function Dashboard() {
     ) {
       user?.userDB?.role === "User" && navigate("/dashboard/profile");
       user?.userDB?.role === "Moderator" && navigate("/dashboard/profile");
+      user?.userDB?.role === "Admin" && navigate("/dashboard/admin-profile");
     }
   }, [location]);
   return (
