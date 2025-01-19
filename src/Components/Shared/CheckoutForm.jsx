@@ -64,6 +64,7 @@ export default function CheckoutForm({ id, setPaymentModal }) {
         scholarshipId: id,
         paymentId: paymentIntent.id,
         paymentTime: paymentIntent.created,
+        status: "Pending",
       });
 
       setApplyModal(true);

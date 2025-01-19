@@ -20,6 +20,7 @@ import ComProtect from "../Components/ProtectRoute/ComProtect";
 import RoleProtect from "../Components/ProtectRoute/RoleProtect";
 import AppliedScholarship from "../Components/DashboardComponents/AppliedScholarship";
 import AdminProfile from "../Components/DashboardComponents/AdminProfile";
+import ManageUser from "../Components/DashboardComponents/ManageUser";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -82,7 +83,7 @@ const router = createBrowserRouter([
       {
         path: "applications",
         element: (
-          <RoleProtect role={["User"]}>
+          <RoleProtect role={["User", "Moderator", "Admin"]}>
             <Applications />,
           </RoleProtect>
         ),
@@ -104,9 +105,9 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "mange-scholarship",
+        path: "manage-scholarship",
         element: (
-          <RoleProtect role={["Moderator"]}>
+          <RoleProtect role={["Moderator", "Admin"]}>
             <MangeScholarship />,
           </RoleProtect>
         ),
@@ -114,7 +115,7 @@ const router = createBrowserRouter([
       {
         path: "all-reviews",
         element: (
-          <RoleProtect role={["Moderator"]}>
+          <RoleProtect role={["Moderator", "Admin"]}>
             <AllReviews />,
           </RoleProtect>
         ),
@@ -122,7 +123,7 @@ const router = createBrowserRouter([
       {
         path: "applied-scholarship",
         element: (
-          <RoleProtect role={["Moderator"]}>
+          <RoleProtect role={["Moderator", "Admin"]}>
             <AppliedScholarship />,
           </RoleProtect>
         ),
@@ -132,6 +133,14 @@ const router = createBrowserRouter([
         element: (
           <RoleProtect role={["Admin"]}>
             <AdminProfile />
+          </RoleProtect>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <RoleProtect role={["Admin"]}>
+            <ManageUser />
           </RoleProtect>
         ),
       },

@@ -231,7 +231,8 @@ export default function Dashboard() {
                   </li>
                 </NavLink>
               )}
-              {user?.userDB?.role === "Moderator" ? (
+              {user?.userDB?.role === "Moderator" ||
+              user?.userDB?.role === "Admin" ? (
                 <NavLink
                   to={"/dashboard/all-reviews"}
                   className={({ isActive }) =>
@@ -289,9 +290,10 @@ export default function Dashboard() {
                 ""
               )}
 
-              {user?.userDB?.role === "Moderator" && (
+              {user?.userDB?.role === "Moderator" ||
+              user?.userDB?.role === "Admin" ? (
                 <NavLink
-                  to={"/dashboard/mange-scholarship"}
+                  to={"/dashboard/manage-scholarship"}
                   className={({ isActive }) =>
                     isActive ? "rounded-lg border-2" : ""
                   }
@@ -314,8 +316,11 @@ export default function Dashboard() {
                     Manage Scholarships
                   </li>
                 </NavLink>
+              ) : (
+                ""
               )}
-              {user?.userDB?.role === "Moderator" && (
+              {user?.userDB?.role === "Moderator" ||
+              user?.userDB?.role === "Admin" ? (
                 <NavLink
                   to={"/dashboard/applied-scholarship"}
                   className={({ isActive }) =>
@@ -340,6 +345,8 @@ export default function Dashboard() {
                     Applied Scholarships
                   </li>
                 </NavLink>
+              ) : (
+                ""
               )}
             </ul>
           </section>

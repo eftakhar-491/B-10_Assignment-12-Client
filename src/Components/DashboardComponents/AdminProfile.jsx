@@ -6,6 +6,22 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 import l from "../../assets/images/loading.gif";
 import StateContext from "../../Context/StateContext";
+
+// import "./styles.css";
+
+import {
+  ComposedChart,
+  Line,
+  Area,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  Legend,
+} from "recharts";
+
 export default function AdminProfile() {
   const { setSideBar } = useContext(StateContext);
   const { user } = useContext(AuthContext);
@@ -25,13 +41,23 @@ export default function AdminProfile() {
       return res.data;
     },
   });
-  console.log(user);
-  console.log("userData-->", userData);
+  const { data: chart } = useQuery({
+    queryKey: ["chart"],
+    enabled: user ? true : false,
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/scholarship/chart?email=${user?.email}`
+      );
+      return res.data;
+    },
+  });
+  console.log("chart", chart);
+
   return (
     <>
       <section className="relative md:ml-[320px] font-Roboto min-h-screen bg-white ">
         <OpenDrowerBTN setSideBar={setSideBar} />
-        <div className="flex flex-col mt-auto min-h-screen items-center justify-center  py-10">
+        <div className="flex flex-col mt-auto items-center justify-start  py-10">
           <h1 className="text-3xl font-Lora font-semibold mb-3">
             User Profile
           </h1>
@@ -65,6 +91,36 @@ export default function AdminProfile() {
               </div>
             </div>
           )}
+        </div>
+        <hr />
+        <div className="w-full mx-auto">
+          <ResponsiveContainer width="100%" height={400}>
+            <ComposedChart
+              width={500}
+              height={400}
+              data={chart}
+              margin={{
+                top: 20,
+                right: 20,
+                bottom: 20,
+                left: 5,
+              }}
+            >
+              <CartesianGrid stroke="#f5f5f5" />
+              <XAxis dataKey="scholarshipName" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Area
+                type="monotone"
+                dataKey="totalApplyed"
+                fill="#8884d8"
+                stroke="#8884d8"
+              />
+              <Bar dataKey="Fees" barSize={20} fill="#413ea0" />
+              <Line type="monotone" dataKey="totalReview" stroke="#ff7300" />
+            </ComposedChart>
+          </ResponsiveContainer>
         </div>
       </section>
     </>
