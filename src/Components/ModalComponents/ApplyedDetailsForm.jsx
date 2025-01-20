@@ -54,7 +54,7 @@ export default function ApplyedDetailsForm({ data }) {
       scholarshipId: data._id,
       status: "Pending",
     });
-
+    toast.success("Applycation Success");
     if (res.status === 200) setApplyModal(false);
   }
 

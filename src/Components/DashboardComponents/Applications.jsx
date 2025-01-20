@@ -103,8 +103,8 @@ export default function Applications() {
                           )}
                         </td>
                         <td className="border-r-2">
-                          {item?.scholarshipDetails[0].universityCity},{" "}
-                          {item?.scholarshipDetails[0].universityCountry}{" "}
+                          {item?.scholarshipDetails[0]?.universityCity},{" "}
+                          {item?.scholarshipDetails[0]?.universityCountry}{" "}
                         </td>
                         <td className="border-r-2">
                           {item?.feedback ? (
@@ -118,16 +118,16 @@ export default function Applications() {
                           )}
                         </td>
                         <td className="border-r-2">
-                          {item.scholarshipDetails[0].subjectCategory}
+                          {item.scholarshipDetails[0]?.subjectCategory}
                         </td>
                         <td className="border-r-2">
-                          {item.scholarshipDetails[0].degree}
+                          {item.scholarshipDetails[0]?.degree}
                         </td>
                         <td className="border-r-2">
-                          $ {item.scholarshipDetails[0].applicationFees}
+                          $ {item.scholarshipDetails[0]?.applicationFees}
                         </td>
                         <td className="border-r-2">
-                          $ {item.scholarshipDetails[0].serviceCharge}
+                          $ {item.scholarshipDetails[0]?.serviceCharge}
                         </td>
                         <td className="border-r-2">
                           {item.status || (
