@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Firebase/AuthProvider";
+import { toast } from "react-toastify";
 
-export default function FeedbackModal({ data, setFeedbackModal }) {
+export default function FeedbackModal({ data, setFeedbackModal, refetch }) {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   async function handelFeedbackSubmit(e) {
@@ -15,6 +16,8 @@ export default function FeedbackModal({ data, setFeedbackModal }) {
         feedback: e.target.feedback.value,
       }
     );
+    refetch();
+    toast.success("Feedback Submitted");
   }
   return (
     <>
@@ -22,7 +25,10 @@ export default function FeedbackModal({ data, setFeedbackModal }) {
         <div className="max-w-[500px] w-full bg-white p-4 rounded-lg">
           <h1 className="flex justify-between text-xl font-Lora">
             Feedback
-            <span className="cursor-pointer active:scale-95">
+            <span
+              onClick={() => setFeedbackModal(false)}
+              className="cursor-pointer active:scale-95"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -44,6 +50,7 @@ export default function FeedbackModal({ data, setFeedbackModal }) {
               placeholder="Write your feedback here..."
               name="feedback"
               rows={5}
+              defaultValue={data?.feedback}
               className="border-2 mt-2 w-full pl-4"
             ></textarea>
             <button

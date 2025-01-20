@@ -92,6 +92,7 @@ export default function AppliedScholarship() {
     <>
       {feedbackModal && (
         <FeedbackModal
+          refetch={refetch}
           setFeedbackModal={setFeedbackModal}
           data={feedbackData}
         />
@@ -145,6 +146,16 @@ export default function AppliedScholarship() {
                 </tr>
               </thead>
               <tbody>
+                {appliedData?.length === 0 && (
+                  <tr>
+                    <td
+                      className="text-center py-2 border-b-2 text-sm text-red-500"
+                      colSpan={6}
+                    >
+                      No applied found
+                    </td>
+                  </tr>
+                )}
                 {filterApplication?.map((data, i) => (
                   <tr key={("APPLIEDDATA", i)} className="border-y-2">
                     <td className="border-r-2 py-2">

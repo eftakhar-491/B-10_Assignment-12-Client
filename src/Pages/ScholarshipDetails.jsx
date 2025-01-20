@@ -128,7 +128,7 @@ export default function ScholarshipDetails() {
               {scholarshipDetails?.serviceCharge}
             </p>
             <p>
-              <span className="font-semibold">Service charge (USD): </span>${" "}
+              <span className="font-semibold">Tuition fees (USD): </span>${" "}
               {scholarshipDetails?.tuitionFees}
             </p>
           </div>

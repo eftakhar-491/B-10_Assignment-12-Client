@@ -23,7 +23,6 @@ The Scholarship Management System is designed to streamline the process of manag
 - **JavaScript:** Programming language for adding interactivity to web pages.
 - **TailwindCSS:** Utility-first CSS framework for styling.
 - **React.js:** Frontend framework for building the user interface.
-- **SwiperJS:** Used for creating beautiful and interactive sliders.
 
 ## Installation
 

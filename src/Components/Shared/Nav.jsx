@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/icon/logo.png";
 import profile from "../../assets/icon/profile.gif";
 import { AuthContext } from "../../Firebase/AuthProvider";
@@ -8,6 +8,7 @@ export default function Nav() {
   const { logOut, user } = useContext(AuthContext);
   const [menu, setMenu] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
+  const navigate = useNavigate();
   async function handelLogout() {
     try {
       await logOut();
@@ -41,7 +42,10 @@ export default function Nav() {
                 />
               </svg>
             </span>
-            <span className="font-Lora text-[16px] md:text-xl">
+            <span
+              onClick={() => navigate("/")}
+              className="cursor-pointer font-Lora text-[16px] md:text-xl"
+            >
               ScholarSphere
             </span>
           </h1>

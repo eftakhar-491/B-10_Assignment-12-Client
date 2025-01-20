@@ -72,7 +72,13 @@ export default function MangeScholarship() {
                 </tr>
               </thead>
               <tbody className="">
-                {isLoading && <img src={l} alt="" />}
+                {isLoading && (
+                  <tr>
+                    <td colSpan={6}>
+                      <img className="mx-auto max-w-[150px]" src={l} alt="" />
+                    </td>
+                  </tr>
+                )}
                 {manageScholarship?.length === 0 && (
                   <tr>
                     <td colSpan="6" className="text-center text-red-500 py-5">

@@ -50,8 +50,8 @@ export default function AppliedScholarshipDetailsModal({
                 {data?.scholarshipDetails[0]?.scholarshipCategory}
               </p>
               <p>
-                <span className="font-semibold">Description:</span>
-                {data?.scholarshipDetails[0]?.description}
+                <span className="font-semibold">Description: </span>
+                {data?.scholarshipDetails[0]?.description || "No Description"}
               </p>
               <p>
                 <span className="font-semibold">World Rank: </span>

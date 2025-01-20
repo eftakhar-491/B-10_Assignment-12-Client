@@ -145,7 +145,6 @@ export default function ManageSchocalshipModal({
               </label>
               <input
                 name="photo"
-                required
                 type="file"
                 onChange={handelPhotoUpload}
                 className="w-full p-2 border border-gray-300 rounded"

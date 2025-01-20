@@ -3,7 +3,7 @@ import ScholarshipCard from "../Shared/ScholarshipCard";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import l from "../../assets/images/loading.gif";
 export default function TopScholarship() {
   const navigate = useNavigate();
   const {
@@ -33,8 +33,16 @@ export default function TopScholarship() {
           </p>
         </div>
         <div className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1900px] mx-auto gap-4 px-[5%] mt-10">
-          {isLoading && <p>Loading...</p>}
-          {isError && <p>Something went wrong</p>}
+          {isLoading && (
+            <div className="md:col-span-2 col-span-1 lg:col-span-3 flex justify-center items-center w-full">
+              <img className="max-w-[250px] mx-auto" src={l} alt="loading.." />
+            </div>
+          )}
+          {isError && (
+            <p className="col-span-3 text-center text-sm text-red-600">
+              Something went wrong
+            </p>
+          )}
           {topScholarship?.map((scholarship, i) => (
             <ScholarshipCard key={i + "t"} data={scholarship} />
           ))}

@@ -37,7 +37,7 @@ export default function AllReviews() {
           </h1>
         </div>
         {isLoading ? (
-          <img src={l} alt="" />
+          <img className="max-w-[200px] mx-auto" src={l} alt="" />
         ) : (
           <div className="p-4 justify-center lg:justify-start flex flex-wrap gap-4  mt-7">
             {allreviews?.map((review) => (

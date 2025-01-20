@@ -48,7 +48,7 @@ export default function ApplyedDetailsForm({ data }) {
     e.preventDefault();
     if (uploading) return toast.warning("Please Wait Image is Uploading");
     console.log(formData);
-    const res = await axiosSecure.put("/applyed", {
+    const res = await axiosSecure.put(`/applyed?email=${user?.email}`, {
       ...formData,
       email: user?.email,
       scholarshipId: data._id,
