@@ -147,7 +147,7 @@ export default function ScholarshipDetails() {
           />
         )}
         {allReviews?.length === 0 ? (
-          ""
+          <p className="text-center mt-10 text-red-400">"no review found"</p>
         ) : (
           <>
             <h1 className="text-2xl font-Lora font-semibold text-center mt-10">
