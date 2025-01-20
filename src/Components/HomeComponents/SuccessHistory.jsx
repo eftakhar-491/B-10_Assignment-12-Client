@@ -14,7 +14,7 @@ export default function SuccessHistory() {
     {
       id: 2,
       image:
-        "https://thumbs.dreamstime.com/b/hr-having-job-interviews-25917876.jpg",
+        "https://img.freepik.com/premium-photo/graduation-portrait-diploma-people-university-education-learning-success-achievement-scholarship-award-certificate-graduate-college-students-face-friends-celebration_590464-192497.jpg",
       title: "Freelance Success",
       difficulty: "Advanced",
       history:
@@ -23,7 +23,7 @@ export default function SuccessHistory() {
     {
       id: 3,
       image:
-        "https://thumbs.dreamstime.com/b/law-consultation-subordination-teamwork-business-report-successful-business-man-woman-boss-manager-director-business-law-190650415.jpg",
+        "https://media.istockphoto.com/id/1406888053/photo/a-group-of-cheerful-people-at-graduation-holding-diplomas-or-certificates-up-together-and.jpg?s=612x612&w=0&k=20&c=8LRkx77cpb1clqj2tHqOY--uO8Mj6DB8Qd1Y3RdDRyQ=",
       title: "Hackathon Winner",
       difficulty: "Expert",
       history:
