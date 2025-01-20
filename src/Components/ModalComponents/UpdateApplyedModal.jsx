@@ -50,7 +50,7 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
       }`,
       formdataphoto
     );
-    console.log(data.data.display_url);
+
     setFormData({ ...formData, myImage: data.data.display_url });
     setUploading(false);
   }

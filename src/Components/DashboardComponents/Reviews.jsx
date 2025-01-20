@@ -31,7 +31,6 @@ export default function Reviews() {
     },
   });
   async function handelReviewDelete(id) {
-    console.log(id);
     try {
       const res = await axiosSecure.delete(
         `/reviews/${id}?email=${user?.email}`

@@ -40,14 +40,14 @@ export default function ApplyedDetailsForm({ data }) {
       }`,
       formdataphoto
     );
-    console.log(data.data.display_url);
+
     setFormData({ ...formData, myImage: data.data.display_url });
     setUploading(false);
   }
   async function handleApplySubmit(e) {
     e.preventDefault();
     if (uploading) return toast.warning("Please Wait Image is Uploading");
-    console.log(formData);
+
     const res = await axiosSecure.put(`/applyed?email=${user?.email}`, {
       ...formData,
       email: user?.email,

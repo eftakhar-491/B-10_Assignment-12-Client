@@ -19,7 +19,7 @@ export default function TopScholarship() {
       return res.data;
     },
   });
-  console.log(topScholarship);
+
   return (
     <>
       <section className="mt-16">

@@ -14,7 +14,7 @@ export default function Nav() {
       await logOut();
       toast.success("Logout Success");
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong");
     }
   }
   return (

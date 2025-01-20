@@ -8,7 +8,7 @@ export default function FeedbackModal({ data, setFeedbackModal, refetch }) {
   const { user } = useContext(AuthContext);
   async function handelFeedbackSubmit(e) {
     e.preventDefault();
-    console.log("Feedback Submitted-->", data);
+
     setFeedbackModal(false);
     await axiosSecure.put(
       `/applyed/feedback/${data?._id}?email=${user?.email}`,

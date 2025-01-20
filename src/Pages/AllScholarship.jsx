@@ -28,7 +28,7 @@ export default function AllScholarship() {
   }, [page]);
   const handelSearch = (e) => {
     e.preventDefault();
-    console.log(search);
+
     setPage(1);
     refetch();
   };
@@ -89,7 +89,7 @@ export default function AllScholarship() {
             </form>
           </div>
         </div>
-        {console.log(allScholarship)}
+
         <div className="min-h-[30vh] flex max-w-[1900px] mx-auto flex-wrap gap-8 px-[5%] justify-center mt-10">
           {isLoading && <img className="max-w-[200px]" src={l} />}
           {isError && <p>Something went wrong</p>}
@@ -140,7 +140,6 @@ export default function AllScholarship() {
               }
               onClick={() => {
                 setPage(page + 1);
-                console.log(page);
               }}
               className="disabled:bg-gray-400 disabled:border-gray-400 px-2 py-2 border-2 border-blue-400 rounded-md hover:bg-gray-200"
             >

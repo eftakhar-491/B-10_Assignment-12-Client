@@ -18,11 +18,14 @@ export default function CheckoutForm({ id, setPaymentModal }) {
   const axiosSecure = useAxiosSecure();
   useEffect(() => {
     (async () => {
-      const res = await axiosSecure.post("/create-payment-intent", { id });
+      const res = await axiosSecure.post(
+        `/create-payment-intent?email=${user?.email}`,
+        { id }
+      );
       setClientSecret(res.data.clientSecret);
     })();
   }, [axiosSecure]);
-  console.log(clientSecret);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) {
@@ -36,10 +39,9 @@ export default function CheckoutForm({ id, setPaymentModal }) {
     });
     if (error) {
       setErr(error.message);
-      console.log("[error]", error);
+      toast.error(error.message);
     } else {
       setErr("");
-      console.log("[PaymentMethod]", paymentMethod);
     }
     // confirm payment
 
@@ -54,7 +56,6 @@ export default function CheckoutForm({ id, setPaymentModal }) {
         },
       });
     if (confirmError) {
-      console.log("[error]", confirmError);
       toast.error(confirmError.message);
     } else {
       toast.success("Payment Success");

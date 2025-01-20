@@ -22,9 +22,8 @@ export default function ManageUser() {
       return res.data;
     },
   });
-  console.log(updateEmail);
+
   async function handelRoleChange(e) {
-    console.log(e.target.value);
     try {
       const res = await axiosSecure.patch(
         `/users/admin/role/${updateEmail}?email=${user?.email}`,
@@ -32,7 +31,6 @@ export default function ManageUser() {
       );
       toast.success("Role Updated");
       refetch();
-      console.log(res.data);
     } catch (err) {
       toast.error("Something went wrong! Refresh the page");
     }
@@ -51,7 +49,7 @@ export default function ManageUser() {
   useEffect(() => {
     refetch();
   }, [filterRole]);
-  console.log("manageuser-->", allUsers, user);
+
   return (
     <>
       <section className="relative md:ml-[320px] font-Roboto min-h-screen bg-white ">
@@ -82,7 +80,7 @@ export default function ManageUser() {
                   <th className="border-r-2 py-3">User Name</th>
                   <th className="border-r-2">User Email</th>
                   <th className="border-r-2">User Role</th>
-                  <th className="border-r-2">Action</th>
+                  <th className="border-r-2 min-w-36">Action</th>
                   <th>delete</th>
                 </tr>
               </thead>

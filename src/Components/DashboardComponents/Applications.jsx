@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import OpenDrowerBTN from "./OpenDrowerBTN";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-
+import l from "../../assets/images/loading.gif";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import ReviewModal from "../ModalComponents/ReviewModal";
 import ApplyedDetailsForm from "../ModalComponents/ApplyedDetailsForm";
@@ -42,12 +42,11 @@ export default function Applications() {
       refetch();
     } catch (e) {
       toast.error("Something went wrong! reload the page");
-      console.log(e);
     }
   }
 
-  console.log("-->", isLoading, user, applicationsData);
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading)
+    return <img className="max-w-[200px] mx-auto" src={l} alt="" />;
   return (
     <>
       {updateModal && (

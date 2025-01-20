@@ -26,7 +26,7 @@ export default function AdminProfile() {
   const { setSideBar } = useContext(StateContext);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  // const [userData, setUserData] = useState({});
+
   const {
     data: userData,
     isLoading,
@@ -51,7 +51,6 @@ export default function AdminProfile() {
       return res.data;
     },
   });
-  console.log("chart", chart);
 
   return (
     <>
@@ -59,7 +58,7 @@ export default function AdminProfile() {
         <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="flex flex-col mt-auto items-center justify-start  py-10">
           <h1 className="text-3xl font-Lora font-semibold mb-3">
-            User Profile
+            Admin Profile
           </h1>
           {isError && (
             <h1 className="text-center text-sm text-red-400">

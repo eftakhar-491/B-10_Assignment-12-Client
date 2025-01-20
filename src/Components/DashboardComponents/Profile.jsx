@@ -24,8 +24,7 @@ export default function Profile() {
       return res.data;
     },
   });
-  console.log(user);
-  console.log("userData-->", userData);
+
   return (
     <>
       <section className="relative md:ml-[320px] font-Roboto min-h-screen bg-white ">

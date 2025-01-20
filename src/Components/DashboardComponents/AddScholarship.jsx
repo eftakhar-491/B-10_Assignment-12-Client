@@ -44,7 +44,7 @@ export default function AddScholarship() {
       }`,
       formdataphoto
     );
-    console.log(data.data.display_url);
+
     setFormData({ ...formData, universityImage: data.data.display_url });
     setUploading(false);
   }
@@ -79,9 +79,8 @@ export default function AddScholarship() {
       });
       e.target.photo.value = "";
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong! Please try again");
     }
-    console.log(formData);
   }
   return (
     <>

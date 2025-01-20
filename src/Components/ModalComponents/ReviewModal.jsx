@@ -8,7 +8,7 @@ export default function ReviewModal({ data, setReviewModal }) {
   const [value, setValue] = useState(1);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  console.log(data);
+
   async function handelReviewSubmit(e) {
     e.preventDefault();
     const obj = {

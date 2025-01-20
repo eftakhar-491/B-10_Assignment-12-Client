@@ -5,7 +5,6 @@ export default function AppliedScholarshipDetailsModal({
   data,
   setApplyDetailsModal,
 }) {
-  console.log("applied detailsmodal data -->", data);
   return (
     <>
       <section className="fixed top-0 left-0 z-50  bg-black bg-opacity-50 w-screen h-screen flex justify-center items-center">

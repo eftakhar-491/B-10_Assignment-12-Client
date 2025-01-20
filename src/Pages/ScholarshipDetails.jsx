@@ -55,7 +55,6 @@ export default function ScholarshipDetails() {
       return res.data;
     },
   });
-  console.log("details-->", allReviews);
 
   return (
     <>

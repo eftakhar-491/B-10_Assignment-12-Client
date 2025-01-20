@@ -45,7 +45,7 @@ export default function ManageSchocalshipModal({
       }`,
       formdataphoto
     );
-    console.log(data.data.display_url);
+
     setFormData({ ...formData, universityImage: data.data.display_url });
     setUploading(false);
   }
@@ -61,9 +61,8 @@ export default function ManageSchocalshipModal({
       refetch();
       setManageScholarshipModal(false);
       toast.success("Scholarship Updated");
-      console.log(res);
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong! Refresh the page");
     }
   }
   return (

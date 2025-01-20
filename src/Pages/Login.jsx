@@ -10,10 +10,10 @@ export default function Login() {
   function handelGoogleLogin() {
     signInWithGoogle()
       .then((res) => {
-        console.log(res);
+        toast.success("Login Success");
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("Something went wrong ! Try again");
       });
   }
   async function handelEmailPassLogin(e) {
@@ -25,7 +25,7 @@ export default function Login() {
       toast.success("Login Success");
       e.target.reset();
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong ! Try again");
     }
   }
   return (

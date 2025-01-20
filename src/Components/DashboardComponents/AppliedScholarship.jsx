@@ -47,28 +47,26 @@ export default function AppliedScholarship() {
       toast.warning("Applyed Scholarship Canceled Successfully");
       refetch();
     } catch (error) {
-      console.log("error", error);
+      toast.error("Something went wrong! Refresh the page");
     }
   }
 
-  console.log(filterApplication, appliedData);
   function handelfilter(e) {
     const val = e.target.value;
-    console.log(val);
+
     if (val === "All") {
       setFilterApplication([]);
     } else if (val === "applya") {
       const sort = [...appliedData].sort((a, b) => {
         return a?.paymentTime - b?.paymentTime;
       });
-      console.log(sort);
 
       setFilterApplication(sort);
     } else if (val === "applyd") {
       const sort = [...appliedData].sort((a, b) => {
         return b?.paymentTime - a?.paymentTime;
       });
-      console.log(sort);
+
       setFilterApplication(sort);
     } else if (val === "deadlinea") {
       const sort = [...appliedData].sort((a, b) => {

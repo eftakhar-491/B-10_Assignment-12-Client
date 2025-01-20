@@ -16,11 +16,11 @@ export default function StatusUpdateModal({ data, setStatusModal, refetch }) {
         }
       );
       refetch();
-      console.log(res);
+
       toast.success("Status Updated Successfully");
       setStatusModal(false);
     } catch (e) {
-      console.log(e);
+      toast.error("Something went wrong! Refresh the page");
     }
   }
   return (

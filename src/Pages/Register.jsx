@@ -16,7 +16,7 @@ export default function Register() {
       await signInWithGoogle();
       toast.success("Login Success");
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong ! Try again");
     }
   }
   async function handelPhotoUpload(e) {
@@ -31,7 +31,7 @@ export default function Register() {
       }`,
       formdata
     );
-    console.log(data.data.display_url);
+
     setImageUrl(data.data.display_url);
     setImageUploading(false);
   }
@@ -69,7 +69,7 @@ export default function Register() {
       });
       toast.success("Account Created Successfully");
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong ! Try again");
     }
   }
   return (

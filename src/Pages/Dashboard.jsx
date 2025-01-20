@@ -11,7 +11,7 @@ export default function Dashboard() {
   const [sideBar, setSideBar] = useState(false);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  console.log(user);
+
   const location = useLocation();
   useEffect(() => {
     if (

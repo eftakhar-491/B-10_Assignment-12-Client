@@ -40,7 +40,7 @@ export default function MangeScholarship() {
       refetch();
       toast.warning("Scholarship Deleted");
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong! Refresh the page");
     }
   }
 
