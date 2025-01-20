@@ -169,7 +169,7 @@ export default function Register() {
               onClick={handelGoogleLogin}
               className="w-full justify-center  active:scale-95 hover:bg-blue-200 border-blue-800 flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl"
             >
-              <img className="w-6" src={goo} alt="" />
+              <img className="w-6 cursor-pointer" src={goo} alt="" />
               Continue with Google
             </button>
             <p className="mt-4 text-center">

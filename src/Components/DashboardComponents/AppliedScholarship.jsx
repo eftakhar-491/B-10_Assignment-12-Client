@@ -44,8 +44,8 @@ export default function AppliedScholarship() {
         }
       );
 
-      toast.warning("Applyed Scholarship Canceled Successfully");
       refetch();
+      toast.warning("Applyed Scholarship Canceled Successfully");
     } catch (error) {
       toast.error("Something went wrong! Refresh the page");
     }
@@ -71,16 +71,16 @@ export default function AppliedScholarship() {
     } else if (val === "deadlinea") {
       const sort = [...appliedData].sort((a, b) => {
         return (
-          new Date(a.scholarshipDetails[0].applicationDeadline) -
-          new Date(b.scholarshipDetails[0].applicationDeadline)
+          new Date(a.scholarshipDetails[0]?.applicationDeadline) -
+          new Date(b.scholarshipDetails[0]?.applicationDeadline)
         );
       });
       setFilterApplication(sort);
     } else if (val === "deadlined") {
       const sort = [...appliedData].sort((a, b) => {
         return (
-          new Date(b.scholarshipDetails[0].applicationDeadline) -
-          new Date(a.scholarshipDetails[0].applicationDeadline)
+          new Date(b.scholarshipDetails[0]?.applicationDeadline) -
+          new Date(a.scholarshipDetails[0]?.applicationDeadline)
         );
       });
       setFilterApplication(sort);

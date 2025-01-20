@@ -92,7 +92,7 @@ export default function Login() {
             <p className="text-center mt-4">-------- OR --------</p>
             <div
               onClick={handelGoogleLogin}
-              className="w-full justify-center  active:scale-95 hover:bg-blue-200 border-blue-800 flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl"
+              className="w-full cursor-pointer justify-center  active:scale-95 hover:bg-blue-200 border-blue-800 flex items-center gap-2 text-lg mt-5 border-2 px-6 py-1 rounded-xl"
             >
               <img className="w-6" src={goo} alt="" />
               Continue with Google

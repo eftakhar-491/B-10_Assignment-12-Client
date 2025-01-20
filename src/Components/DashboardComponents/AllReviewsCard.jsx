@@ -60,7 +60,7 @@ export default function AllReviewsCard({ data, refetch }) {
       </div>
       <div className="mt-5">
         <p className="text-sm bg-blue-100 px-4 py-1 border-2 border-blue-800 w-fit rounded-2xl">
-          {data?.scholarshipDetails[0].subjectCategory}
+          {data?.scholarshipDetails[0]?.subjectCategory || "No Category"}
         </p>
         <p className="p-3 text-lg mt-0">
           <span className="font-semibold">comment : </span>

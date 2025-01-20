@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/icon/logo.png";
 import profile from "../../assets/icon/profile.gif";
 import { AuthContext } from "../../Firebase/AuthProvider";
@@ -9,6 +9,7 @@ export default function Nav() {
   const [menu, setMenu] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   async function handelLogout() {
     try {
       await logOut();
@@ -104,21 +105,38 @@ export default function Nav() {
             </ul>
             <div className="flex items-center gap-4">
               {!user ? (
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) => (isActive ? "bg-blue-200" : "")}
-                >
-                  <button className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold">
-                    LogIn
-                  </button>
-                </NavLink>
+                location.pathname === "/login" ? (
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) =>
+                      isActive ? "bg-blue-200" : ""
+                    }
+                  >
+                    <button className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold">
+                      Register
+                    </button>
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      isActive ? "bg-blue-200" : ""
+                    }
+                  >
+                    <button className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold">
+                      LogIn
+                    </button>
+                  </NavLink>
+                )
               ) : (
-                <button
-                  onClick={handelLogout}
-                  className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold"
-                >
-                  LogOut
-                </button>
+                <>
+                  <button
+                    onClick={handelLogout}
+                    className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold"
+                  >
+                    LogOut
+                  </button>
+                </>
               )}
               <div
                 onClick={() => setProfileMenu((p) => !p)}

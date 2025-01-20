@@ -65,70 +65,70 @@ export default function ScholarshipDetails() {
             <img
               className="md:w-[300px] rounded-lg"
               src={scholarshipDetails?.universityImage}
-              alt=""
+              alt="no image found"
             />
             <div>
               <h1 className="text-xl font bold">
                 <span className="font-semibold">University Name: </span>{" "}
-                {scholarshipDetails?.universityName}
+                {scholarshipDetails?.universityName || "no data found"}
               </h1>
               <p>
                 <span className="font-semibold">Country: </span>{" "}
-                {scholarshipDetails?.universityCountry}
+                {scholarshipDetails?.universityCountry || "no data found"}
               </p>
               <p>
                 <span className="font-semibold">City: </span>
-                {scholarshipDetails?.universityCity}
+                {scholarshipDetails?.universityCity || "no data found"}
               </p>
               <p>
                 <span className="font-semibold">Degree: </span>
-                {scholarshipDetails?.degree}
+                {scholarshipDetails?.degree || "no data found"}
               </p>
               <p>
                 {" "}
                 <span className="font-semibold">Deadline: </span>{" "}
-                {scholarshipDetails?.applicationDeadline}
+                {scholarshipDetails?.applicationDeadline || "no data found"}
               </p>
             </div>
           </div>
           <hr />
           <div className="mt-6">
             <p className="text-sm border-2 border-blue-700 w-fit px-4 rounded-3xl">
-              {scholarshipDetails?.scholarshipCategory}
+              {scholarshipDetails?.scholarshipCategory || "no data found"}
             </p>
             <p>
               <span className="font-semibold">Description:</span>
-              {scholarshipDetails?.description}
+              {scholarshipDetails?.description || "no data found"}
             </p>
             <p>
               <span className="font-semibold">World Rank: </span>
-              {scholarshipDetails?.universityWorldRank}
+              {scholarshipDetails?.universityWorldRank || "no data found"}
             </p>
             <p>
               {" "}
               <span className="font-semibold">Subject name: </span>
-              {scholarshipDetails?.subjectCategory}
+              {scholarshipDetails?.subjectCategory || "no data found"}
             </p>
             <p>
               {" "}
               <span className="font-semibold">Posted By: </span>
-              {scholarshipDetails?.postedBy}
+              {scholarshipDetails?.postedBy || "no data found"}
             </p>
             <p>
               <span className="font-semibold">Post date: </span>
-              {fullDate}
+              {fullDate || "no data found"}
             </p>
             <p>
               <span className="font-semibold">Application fees (USD): </span>${" "}
-              {scholarshipDetails?.applicationFees}
+              {scholarshipDetails?.applicationFees || "no data found"}
             </p>
             <p>
               <span className="font-semibold">Service charge (USD): </span>${" "}
-              {scholarshipDetails?.serviceCharge}
+              {scholarshipDetails?.serviceCharge || "no data found"}
             </p>
             <p>
               <span className="font-semibold">Tuition fees (USD): </span>${" "}
-              {scholarshipDetails?.tuitionFees}
+              {scholarshipDetails?.tuitionFees || "no data found"}
             </p>
           </div>
           <button
