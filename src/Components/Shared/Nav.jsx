@@ -31,10 +31,12 @@ export default function Nav() {
       >
         <div className="relative max-w-[1900px] px-4 md:px-[5%] mx-auto flex items-center justify-between py-3">
           <h1 className="text-xl md:text-2xl lg:text-3xl flex items-center gap-2">
-            <img className="hidden md:block" src={logo} alt="logo" />
+            {!theme && (
+              <img className="hidden md:block" src={logo} alt="logo" />
+            )}
             <span
               onClick={() => setMenu((p) => !p)}
-              className="cursor-pointer active:scale-95 md:hidden"
+              className="cursor-pointer active:scale-95 lg:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +64,7 @@ export default function Nav() {
 
           {menu && (
             <ul
-              className={`flex md:hidden flex-col absolute top-12 bg-blue-400/60 backdrop-blur-md p-4 rounded-lg z-50 gap-4`}
+              className={`flex lg:hidden flex-col absolute top-12 bg-blue-400/60 backdrop-blur-md p-4 rounded-lg z-50 gap-4`}
             >
               <NavLink
                 to={"/"}
@@ -114,7 +116,7 @@ export default function Nav() {
           )}
 
           <div className="flex items-center gap-4">
-            <ul className="md:flex hidden items-center gap-4">
+            <ul className="lg:flex hidden items-center gap-4">
               <NavLink
                 to={"/"}
                 className={({ isActive }) =>

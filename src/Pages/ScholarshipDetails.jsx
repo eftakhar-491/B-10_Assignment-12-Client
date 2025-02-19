@@ -163,7 +163,11 @@ export default function ScholarshipDetails() {
             <h1 className="text-2xl font-Lora font-semibold text-center mt-10">
               Reviews
             </h1>
-            <div className=" max-w-[1000px] mx-auto mt-5 bg-white rounded-lg">
+            <div
+              className={`${
+                theme ? "bg-black" : "bg-white"
+              } max-w-[1000px] mx-auto mt-5 rounded-lg border`}
+            >
               <Swiper
                 spaceBetween={0}
                 centeredSlides={true}

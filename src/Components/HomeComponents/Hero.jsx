@@ -16,7 +16,7 @@ export default function Hero() {
   const navigate = useNavigate();
   return (
     <>
-      <header className="mt-[75px]">
+      <header className="mt-[50px] lg:mt-[61px]">
         <div
           style={{
             backgroundImage: `linear-gradient(
