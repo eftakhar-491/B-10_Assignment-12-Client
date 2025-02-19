@@ -63,9 +63,9 @@ export default function Profile() {
                   {userData?.name}
                 </h2>
                 <p className="text-lg">{userData?.email}</p>
-                <div className="text-lg font-semibold border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-200 cursor-pointer active:scale-95">
+                {/* <div className="text-lg font-semibold border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-200 cursor-pointer active:scale-95">
                   Update Profile
-                </div>
+                </div> */}
               </div>
             </div>
           )}

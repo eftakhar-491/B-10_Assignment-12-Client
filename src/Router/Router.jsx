@@ -23,6 +23,7 @@ import AdminProfile from "../Components/DashboardComponents/AdminProfile";
 import ManageUser from "../Components/DashboardComponents/ManageUser";
 import { ThemeProvider } from "../Context/ThemeContext";
 import AboutUs from "../Pages/AboutUs";
+import ContactUs from "../Pages/ContactUs";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +47,14 @@ const router = createBrowserRouter([
         element: (
           <ComProtect>
             <ScholarshipDetails />,
+          </ComProtect>
+        ),
+      },
+      {
+        path: "/contactus",
+        element: (
+          <ComProtect>
+            <ContactUs />,
           </ComProtect>
         ),
       },

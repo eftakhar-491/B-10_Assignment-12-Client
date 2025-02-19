@@ -98,6 +98,17 @@ export default function Nav() {
                   <li>Dashboard</li>
                 </NavLink>
               )}
+              {user && (
+                <NavLink
+                  state={{ his: "/contactus" }}
+                  to={"/contactus"}
+                  className={({ isActive }) =>
+                    isActive ? "border-b-2 border-blue-800 font-semibold" : ""
+                  }
+                >
+                  <li>Contact Us</li>
+                </NavLink>
+              )}
             </ul>
           )}
 
@@ -136,6 +147,17 @@ export default function Nav() {
                   }
                 >
                   <li>Dashboard</li>
+                </NavLink>
+              )}
+              {user && (
+                <NavLink
+                  state={{ his: "/contactus" }}
+                  to={"/contactus"}
+                  className={({ isActive }) =>
+                    isActive ? "border-b-2 border-blue-800 font-semibold" : ""
+                  }
+                >
+                  <li>Contact Us</li>
                 </NavLink>
               )}
             </ul>
