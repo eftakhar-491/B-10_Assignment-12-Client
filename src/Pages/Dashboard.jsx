@@ -40,7 +40,7 @@ export default function Dashboard() {
             }}
             className={`fixed ${
               sideBar ? "block md:block" : "hidden md:block"
-            } z-40 w-[320px] text-white left-0 bg-cover bg-blue-900/80 h-screen`}
+            } z-40 w-[320px] overflow-y-auto text-white left-0 bg-cover bg-blue-900/80 h-screen`}
           >
             <div className="relative">
               <div
@@ -353,7 +353,7 @@ export default function Dashboard() {
           </section>
 
           {/* right section */}
-          <section className="relative h-screen w-full">
+          <section className="relative h-screen w-full overflow-y-auto">
             <StateContext.Provider value={{ setSideBar }}>
               <QueryClientProvider client={queryClient}>
                 <Outlet />
