@@ -5,7 +5,9 @@ import logbgr from "../assets/images/logbgr.jpg";
 import { AuthContext } from "../Firebase/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useTheme } from "../Context/ThemeContext";
 export default function Register() {
+  const { theme } = useTheme();
   const [imageUrl, setImageUrl] = useState("");
   const [imageuploading, setImageUploading] = useState(false);
   const navigate = useNavigate();
@@ -81,13 +83,15 @@ export default function Register() {
               to bottom,
               rgba(0,0,0,0),
               rgba(0,0,0,0)
-            ),url(${logbgr})`,
+            ),url(${!theme ? logbgr : ""})`,
           }}
           className="max-w-[1900px] mx-auto px-[5%] bg-cover rounded-lg bg-center bg-no-repeat"
         >
           <form
             onSubmit={handelEmailPassLogin}
-            className="mx-auto sm:mx-0 sm:ml-auto rounded-lg w-11/12 md:max-w-md lg:max-w-xl py-20"
+            className={`mx-auto   rounded-lg w-11/12 md:max-w-md lg:max-w-xl py-20 ${
+              theme ? "mx-auto border p-4" : "sm:ml-auto sm:mx-0"
+            }`}
           >
             <label className="text-2xl font-Lora font-bold">
               Create an Account
@@ -97,13 +101,17 @@ export default function Register() {
                 type="text"
                 name="name"
                 id="name"
-                className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  theme ? "text-white" : ""
+                }`}
                 placeholder=" "
                 required
               />
               <label
                 htmlFor="name"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                className={`peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 ${
+                  theme ? "text-white" : ""
+                }`}
               >
                 Full Name
               </label>
@@ -114,13 +122,17 @@ export default function Register() {
                 type="file"
                 name="photo"
                 id="photo"
-                className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  theme ? "text-white" : ""
+                }`}
                 placeholder=" "
                 onChange={handelPhotoUpload}
               />
               <label
                 htmlFor="photo"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                className={`peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 ${
+                  theme ? "text-white" : ""
+                }`}
               >
                 Select Profile Picture
               </label>
@@ -130,7 +142,9 @@ export default function Register() {
                 type="email"
                 name="floating_email"
                 id="floating_email"
-                className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  theme ? "text-white" : ""
+                }`}
                 placeholder=" "
                 required
               />
@@ -146,7 +160,9 @@ export default function Register() {
                 type="password"
                 name="floating_password"
                 id="floating_password"
-                className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  theme ? "text-white" : ""
+                }`}
                 placeholder=" "
                 required
               />

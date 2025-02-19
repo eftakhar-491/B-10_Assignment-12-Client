@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import logbg from "../assets/images/logbg.jpg";
 import { AuthContext } from "../Firebase/AuthProvider";
 import { toast } from "react-toastify";
+import { useTheme } from "../Context/ThemeContext";
 export default function Login() {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const { signInWithGoogle, signIn } = useContext(AuthContext);
   function handelGoogleLogin() {
@@ -37,13 +39,15 @@ export default function Login() {
             to bottom,
             rgba(0,0,0,0),
             rgba(0,0,0,0)
-          ),url(${logbg})`,
+          ),url(${!theme ? logbg : ""})`,
           }}
           className="max-w-[1900px] mx-auto px-[5%] bg-cover rounded-lg bg-center bg-no-repeat"
         >
           <form
             onSubmit={handelEmailPassLogin}
-            className=" rounded-lg w-11/12 md:max-w-md lg:max-w-xl py-20"
+            className={`rounded-lg w-11/12 md:max-w-md lg:max-w-xl py-20 ${
+              theme ? "mx-auto border p-4" : ""
+            }`}
           >
             <label className="text-2xl font-Lora font-bold">
               Log In to ScholarSphere
@@ -53,7 +57,9 @@ export default function Login() {
                 type="email"
                 name="floating_email"
                 id="floating_email"
-                className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  theme ? "text-white" : ""
+                }`}
                 placeholder=" "
                 required
               />
@@ -69,7 +75,9 @@ export default function Login() {
                 type="password"
                 name="floating_password"
                 id="floating_password"
-                className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  theme ? "text-white" : ""
+                }`}
                 placeholder=" "
                 required
               />
@@ -80,9 +88,9 @@ export default function Login() {
                 Password
               </label>
             </div>
-            <p className="text-sm text-right -mt-3 cursor-pointer">
+            {/* <p className="text-sm text-right -mt-3 cursor-pointer">
               Forget Password
-            </p>
+            </p> */}
             <button
               type="submit"
               className="w-full justify-center  active:scale-95 font-Roboto font-semibold hover:bg-blue-200 flex items-center gap-2 text-lg mt-5 border-2 border-blue-800 px-6 py-1 rounded-xl"
