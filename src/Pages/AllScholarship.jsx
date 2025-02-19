@@ -7,6 +7,8 @@ import axios from "axios";
 export default function AllScholarship() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState(null);
+  const [sortData, setSortData] = useState([]);
   const {
     data: allScholarship,
     isLoading,
@@ -26,6 +28,16 @@ export default function AllScholarship() {
   useEffect(() => {
     refetch();
   }, [page]);
+  useEffect(() => {
+    if (sortOrder === "asc") {
+      setSortData(allScholarship.sort((a, b) => a.tuitionFees - b.tuitionFees));
+    } else if (sortOrder === "desc") {
+      setSortData(allScholarship.sort((a, b) => b.tuitionFees - a.tuitionFees));
+    } else {
+      setSortData(allScholarship);
+    }
+  }, [allScholarship, sortOrder]);
+  console.log(sortData);
   const handelSearch = (e) => {
     e.preventDefault();
 
@@ -56,6 +68,17 @@ export default function AllScholarship() {
               onSubmit={handelSearch}
               className="w-11/12 md:w-[600px] h-12 flex mx-auto items-center gap-3  justify-center rounded-xl bg-white mt-10"
             >
+              <select
+                onChange={(e) => {
+                  setSortOrder(e.target.value);
+                  refetch();
+                }}
+                className="border-2 h-full px-3 rounded-xl"
+              >
+                <option value="">Sort by Tuition Fees</option>
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </select>
               <input
                 value={search}
                 onChange={(e) => {
@@ -98,7 +121,11 @@ export default function AllScholarship() {
             !isLoading &&
             !isError &&
             allScholarship?.map((scholarship, i) => (
-              <ScholarshipCard key={i + "all"} data={scholarship} />
+              <ScholarshipCard
+                key={i + "all"}
+                data={scholarship}
+                sortOrder={sortOrder}
+              />
             ))}
         </div>
         <div>
