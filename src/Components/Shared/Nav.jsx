@@ -16,6 +16,7 @@ export default function Nav() {
     try {
       await logOut();
       toast.success("Logout Success");
+      navigate("/");
     } catch (err) {
       toast.error("Something went wrong");
     }
@@ -255,7 +256,7 @@ export default function Nav() {
                   {user ? (
                     <img src={user?.photoURL} alt="" />
                   ) : (
-                    <img src={profile} alt="" />
+                    <img className="bg-white" src={profile} alt="" />
                   )}
                 </div>
               </div>

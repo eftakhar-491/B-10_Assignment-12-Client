@@ -43,7 +43,7 @@ export default function Hero() {
           >
             <SwiperSlide>
               <div className=" h-[600px] gap-4 md:gap-0 flex md:flex-row flex-col-reverse md:items-center md:justify-between justify-center px-[5%]">
-                <div className=" md:w-1/2">
+                <div className="text-center mx-auto">
                   <h1 className="text-2xl md:text-5xl font-bold mb-3">
                     Your Gateway to Educational Opportunities
                   </h1>
@@ -59,14 +59,14 @@ export default function Hero() {
                     See All Scholarship
                   </button>
                 </div>
-                <div className="md:w-1/2 ">
+                {/* <div className="md:w-1/2 ">
                   <img className="mx-auto" src={h2} alt="" />
-                </div>
+                </div> */}
               </div>
             </SwiperSlide>
             <SwiperSlide>
               <div className="h-[600px] md:gap-0 gap-4 flex md:flex-row flex-col-reverse md:items-center md:justify-between justify-center px-[5%]">
-                <div className="md:w-1/2">
+                <div className="text-center mx-auto">
                   <h1 className="text-2xl md:text-5xl font-bold mb-3">
                     Empowering Dreams, One Scholarship at a Time
                   </h1>
@@ -82,14 +82,14 @@ export default function Hero() {
                     See All Scholarship
                   </button>
                 </div>
-                <div className="md:w-1/2 ">
+                {/* <div className="md:w-1/2 ">
                   <img className="mx-auto" src={h3} alt="" />
-                </div>
+                </div> */}
               </div>
             </SwiperSlide>
             <SwiperSlide>
               <div className="h-[600px] gap-4 md:gap-0 flex md:flex-row flex-col-reverse md:items-center md:justify-between justify-center px-[5%]">
-                <div className="md:w-1/2">
+                <div className="text-center mx-auto">
                   <h1 className="md:text-5xl font-bold mb-3">
                     Your Gateway to Scholarship Success
                   </h1>
@@ -104,9 +104,9 @@ export default function Hero() {
                     See All Scholarship
                   </button>
                 </div>
-                <div className="md:w-1/2 ">
+                {/* <div className="md:w-1/2 ">
                   <img className="mx-auto" src={h1} alt="" />
-                </div>
+                </div> */}
               </div>
             </SwiperSlide>
           </Swiper>

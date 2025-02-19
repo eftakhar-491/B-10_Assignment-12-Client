@@ -27,7 +27,7 @@ export default function Dashboard() {
     <>
       <ToastContainer />
       <main>
-        <div className="relative overflow-y-auto max-w-[1900px] mx-auto flex">
+        <div className="relative max-w-[1900px] mx-auto flex">
           {/* left section  */}
 
           <section
@@ -40,7 +40,7 @@ export default function Dashboard() {
             }}
             className={`fixed ${
               sideBar ? "block md:block" : "hidden md:block"
-            } z-40 w-[320px] text-white bg-cover bg-blue-900/80 h-screen`}
+            } z-40 w-[320px] text-white left-0 bg-cover bg-blue-900/80 h-screen`}
           >
             <div className="relative">
               <div
