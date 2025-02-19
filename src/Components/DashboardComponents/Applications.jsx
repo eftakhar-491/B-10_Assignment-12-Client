@@ -10,8 +10,9 @@ import UpdateApplyedModal from "../ModalComponents/UpdateApplyedModal";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import StateContext from "../../Context/StateContext";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function Applications() {
+  const { theme } = useTheme();
   const { setSideBar } = useContext(StateContext);
   const [reviewModal, setReviewModal] = useState(false);
   const [reviewData, setReviewData] = useState({});
@@ -59,7 +60,11 @@ export default function Applications() {
       {reviewModal && (
         <ReviewModal data={reviewData} setReviewModal={setReviewModal} />
       )}
-      <section className="md:ml-[320px] bg-white min-h-full">
+      <section
+        className={`md:ml-[320px] ${
+          theme ? "bg-black" : "bg-white"
+        } min-h-full`}
+      >
         <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="px-4">
           <h1 className="text-3xl pt-9 font-Lora font-semibold text-center">

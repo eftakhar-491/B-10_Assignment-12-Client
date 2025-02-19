@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { toast } from "react-toastify";
+import { useTheme } from "../../Context/ThemeContext";
 
 export default function StatusUpdateModal({ data, setStatusModal, refetch }) {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
+  const { theme } = useTheme();
   async function handelStatusUpdate(e) {
     e.preventDefault();
     try {
@@ -26,7 +28,11 @@ export default function StatusUpdateModal({ data, setStatusModal, refetch }) {
   return (
     <>
       <section className="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 z-50 flex justify-center items-center">
-        <div className="bg-white p-5 rounded-lg w-[300px] md:w-[500px]">
+        <div
+          className={`border p-5 rounded-lg w-[300px] md:w-[500px] ${
+            theme ? "bg-black" : "bg-white"
+          }`}
+        >
           <form
             onSubmit={handelStatusUpdate}
             className="w-full flex flex-col gap-5"
@@ -61,7 +67,9 @@ export default function StatusUpdateModal({ data, setStatusModal, refetch }) {
                 defaultValue={data?.status}
                 id="status"
                 name="status"
-                className="w-full border-2 border-gray-300 p-3 rounded outline-none focus:border-blue-200"
+                className={`w-full border-2 border-gray-300 p-3 rounded outline-none focus:border-blue-200 ${
+                  theme ? "bg-black" : "bg-white"
+                }`}
               >
                 <option value="Pending">Pending</option>
                 <option value="Processing">Processing</option>
@@ -70,7 +78,7 @@ export default function StatusUpdateModal({ data, setStatusModal, refetch }) {
             </div>
 
             <button
-              className="text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-200 active:scale-95"
+              className="text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 active:scale-95"
               type="submit"
             >
               Update Status

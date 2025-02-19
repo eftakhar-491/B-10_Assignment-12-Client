@@ -5,8 +5,9 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import StateContext from "../../Context/StateContext";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function AddScholarship() {
+  const { theme } = useTheme();
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [formData, setFormData] = useState({
@@ -84,9 +85,17 @@ export default function AddScholarship() {
   }
   return (
     <>
-      <section className="md:ml-[320px] bg-white h-content py-10 ">
+      <section
+        className={`md:ml-[320px] ${
+          theme ? "bg-black" : "bg-white"
+        } h-content py-10 `}
+      >
         <OpenDrowerBTN setSideBar={setSideBar} />
-        <div className="max-w-4xl mx-auto p-6  bg-gray-100 rounded-lg shadow-md">
+        <div
+          className={`max-w-4xl border mx-auto p-6  ${
+            theme ? "bg-black" : "bg-gray-100"
+          } rounded-lg shadow-md`}
+        >
           <h1 className="text-2xl font-bold mb-6 text-center">
             Add New Scholarship
           </h1>
@@ -100,7 +109,9 @@ export default function AddScholarship() {
                 name="scholarshipName"
                 value={formData.scholarshipName}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -110,10 +121,12 @@ export default function AddScholarship() {
               </label>
 
               <textarea
-                className="w-full p-2 border border-gray-300 rounded"
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
               ></textarea>
             </div>
 
@@ -126,7 +139,9 @@ export default function AddScholarship() {
                 name="universityName"
                 value={formData.universityName}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -140,7 +155,9 @@ export default function AddScholarship() {
                 required
                 type="file"
                 onChange={handelPhotoUpload}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
               />
               {uploading && (
                 <p className="text-sm text-blue-500">Uploading...</p>
@@ -156,7 +173,9 @@ export default function AddScholarship() {
                 name="universityCountry"
                 value={formData.universityCountry}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -170,7 +189,9 @@ export default function AddScholarship() {
                 name="universityCity"
                 value={formData.universityCity}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -184,7 +205,9 @@ export default function AddScholarship() {
                 name="universityWorldRank"
                 value={formData.universityWorldRank}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -197,7 +220,9 @@ export default function AddScholarship() {
                 name="subjectCategory"
                 value={formData.subjectCategory}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               >
                 <option value="">Select</option>
@@ -215,7 +240,9 @@ export default function AddScholarship() {
                 name="scholarshipCategory"
                 value={formData.scholarshipCategory}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               >
                 <option value="">Select</option>
@@ -231,7 +258,9 @@ export default function AddScholarship() {
                 name="degree"
                 value={formData.degree}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               >
                 <option value="">Select</option>
@@ -250,7 +279,9 @@ export default function AddScholarship() {
                 name="tuitionFees"
                 value={formData.tuitionFees}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
               />
             </div>
 
@@ -263,7 +294,9 @@ export default function AddScholarship() {
                 name="applicationFees"
                 value={formData.applicationFees}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -277,7 +310,9 @@ export default function AddScholarship() {
                 name="serviceCharge"
                 value={formData.serviceCharge}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -291,7 +326,9 @@ export default function AddScholarship() {
                 name="applicationDeadline"
                 value={formData.applicationDeadline}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>

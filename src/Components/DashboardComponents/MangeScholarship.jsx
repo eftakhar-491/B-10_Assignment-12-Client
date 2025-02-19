@@ -8,8 +8,9 @@ import { toast } from "react-toastify";
 import StateContext from "../../Context/StateContext";
 import { useNavigate } from "react-router-dom";
 import l from "../../assets/images/loading.gif";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function MangeScholarship() {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const [manageScholarshipModal, setManageScholarshipModal] = useState(false);
   const [manageScholarshipData, setManageScholarshipData] = useState({});
@@ -53,7 +54,11 @@ export default function MangeScholarship() {
           setManageScholarshipModal={setManageScholarshipModal}
         />
       )}
-      <section className="md:ml-[320px]  bg-white min-h-full">
+      <section
+        className={`md:ml-[320px]  ${
+          theme ? "bg-black" : "bg-white"
+        } min-h-full`}
+      >
         <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="px-4">
           <h1 className="text-3xl pt-9 font-Lora font-semibold text-center">

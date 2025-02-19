@@ -5,8 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { toast } from "react-toastify";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function ManageUser() {
+  const { theme } = useTheme();
   const { setSideBar } = useContext(StateContext);
   const [updateEmail, setUpdateEmail] = useState("");
   const [filterRole, setFilterRole] = useState("All");
@@ -52,7 +53,11 @@ export default function ManageUser() {
 
   return (
     <>
-      <section className="relative md:ml-[320px] font-Roboto min-h-screen bg-white ">
+      <section
+        className={`relative md:ml-[320px] font-Roboto min-h-screen ${
+          theme ? "bg-black" : "bg-white"
+        }`}
+      >
         <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="flex flex-col mt-auto items-center justify-start px-4 py-10">
           <h1 className="text-3xl font-bold">Manage Users</h1>
@@ -65,7 +70,9 @@ export default function ManageUser() {
               onChange={(e) => {
                 setFilterRole(e.target.value);
               }}
-              className="w-full p-2 border border-gray-300 rounded"
+              className={`w-full p-2 border border-gray-300 rounded ${
+                theme ? "bg-black" : "bg-white"
+              }`}
             >
               <option value="All">All</option>
               <option value="User">User</option>
@@ -99,7 +106,9 @@ export default function ManageUser() {
                         name="roleChange"
                         value={item?.role}
                         onChange={handelRoleChange}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className={`w-full p-2 border border-gray-300 rounded ${
+                          theme ? "bg-transparent" : "bg-white"
+                        }`}
                       >
                         <option value="User">User</option>
                         <option value="Moderator">Moderator</option>

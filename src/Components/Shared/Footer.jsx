@@ -1,12 +1,16 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/icon/logo.png";
+import { useTheme } from "../../Context/ThemeContext";
 export default function Footer() {
   const navigate = useNavigate();
+  const { theme } = useTheme();
   return (
     <>
-      <footer className="bg-white py-20 mt-24">
-        <div className="flex flex-col md:flex-row justify-between px-[5%] max-w-[1900px] mx-auto">
+      <footer
+        className={`${theme ? "bg-transparent" : "bg-white"} py-20 mt-24`}
+      >
+        <div className=" flex flex-col md:flex-row justify-between px-[5%] max-w-[1900px] mx-auto">
           <div>
             <h1 className="text-xl md:text-2xl lg:text-3xl flex items-center gap-2">
               <img className="hidden md:block" src={logo} alt="logo" />

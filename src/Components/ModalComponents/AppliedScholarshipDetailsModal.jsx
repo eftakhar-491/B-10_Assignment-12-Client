@@ -1,15 +1,20 @@
 import moment from "moment";
 import React from "react";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function AppliedScholarshipDetailsModal({
   data,
   setApplyDetailsModal,
 }) {
+  const { theme } = useTheme();
   return (
     <>
       <section className="fixed top-0 left-0 z-50  bg-black bg-opacity-50 w-screen h-screen flex justify-center items-center">
         <div className="overflow-y-auto w-full h-full">
-          <div className="border max-w-[1000px] mx-auto mt-[80px] bg-white p-5 rounded-lg">
+          <div
+            className={`border max-w-[1000px] mx-auto mt-[80px] ${
+              theme ? "bg-black" : "bg-white"
+            } p-5 rounded-lg`}
+          >
             <h1 className="font-Lora font-semibold text-center mb-3 text-2xl">
               Applied Details{" "}
             </h1>

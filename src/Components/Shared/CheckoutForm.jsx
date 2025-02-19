@@ -6,8 +6,9 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import StateContext from "../../Context/StateContext";
 import { toast } from "react-toastify";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function CheckoutForm({ id, setPaymentModal }) {
+  const { theme } = useTheme();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const stripe = useStripe();
@@ -94,7 +95,9 @@ export default function CheckoutForm({ id, setPaymentModal }) {
         />
         <button
           disabled={!stripe || !clientSecret}
-          className="disabled:bg-gray-400 disabled:border-gray-600 w-full mt-6 active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold"
+          className={`disabled:bg-gray-400 disabled:border-gray-600 w-full mt-6 active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold ${
+            theme ? "hover:bg-gray-900" : "hover:bg-blue-100"
+          }`}
           type="submit"
         >
           Pay Now

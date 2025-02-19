@@ -5,7 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import StateContext from "../../Context/StateContext";
 import l from "../../assets/images/loading.gif";
+import { useTheme } from "../../Context/ThemeContext";
 export default function Profile() {
+  const { theme } = useTheme();
   const { setSideBar } = useContext(StateContext);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
@@ -27,7 +29,11 @@ export default function Profile() {
 
   return (
     <>
-      <section className="relative md:ml-[320px] font-Roboto min-h-screen bg-white ">
+      <section
+        className={`relative md:ml-[320px] font-Roboto min-h-screen ${
+          theme ? "bg-black" : "bg-white"
+        }`}
+      >
         <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="flex flex-col mt-auto min-h-screen items-center justify-center  py-10">
           <h1 className="text-3xl font-Lora font-semibold mb-3">

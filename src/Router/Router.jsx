@@ -21,6 +21,7 @@ import RoleProtect from "../Components/ProtectRoute/RoleProtect";
 import AppliedScholarship from "../Components/DashboardComponents/AppliedScholarship";
 import AdminProfile from "../Components/DashboardComponents/AdminProfile";
 import ManageUser from "../Components/DashboardComponents/ManageUser";
+import { ThemeProvider } from "../Context/ThemeContext";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,11 +66,13 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <AuthProvider>
-        <ComProtect>
-          <Dashboard />
-        </ComProtect>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <ComProtect>
+            <Dashboard />
+          </ComProtect>
+        </AuthProvider>
+      </ThemeProvider>
     ),
     children: [
       {

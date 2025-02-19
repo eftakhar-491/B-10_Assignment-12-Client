@@ -3,12 +3,14 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useTheme } from "../../Context/ThemeContext";
 
 export default function ManageSchocalshipModal({
   data,
   setManageScholarshipModal,
   refetch,
 }) {
+  const { theme } = useTheme();
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [formData, setFormData] = useState({
@@ -68,7 +70,11 @@ export default function ManageSchocalshipModal({
   return (
     <>
       <section className="fixed z-[80] w-screen h-screen top-0 left-0 bg-black/50 h-content py-10 overflow-y-auto">
-        <div className="max-w-4xl mx-auto p-6  bg-gray-100 rounded-lg shadow-md">
+        <div
+          className={`border max-w-4xl mx-auto p-6  ${
+            theme ? "bg-black" : "bg-gray-100"
+          } rounded-lg shadow-md`}
+        >
           <h1 className="text-2xl font-Lora font-bold mb-6 flex items-center justify-between">
             Update Scholarship
             <span
@@ -101,7 +107,9 @@ export default function ManageSchocalshipModal({
                 name="scholarshipName"
                 value={formData.scholarshipName}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -111,7 +119,9 @@ export default function ManageSchocalshipModal({
               </label>
 
               <textarea
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
@@ -127,7 +137,9 @@ export default function ManageSchocalshipModal({
                 name="universityName"
                 value={formData.universityName}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -146,7 +158,9 @@ export default function ManageSchocalshipModal({
                 name="photo"
                 type="file"
                 onChange={handelPhotoUpload}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
               />
               {uploading && (
                 <p className="text-sm text-blue-500">Uploading...</p>
@@ -162,7 +176,9 @@ export default function ManageSchocalshipModal({
                 name="universityCountry"
                 value={formData.universityCountry}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -176,7 +192,9 @@ export default function ManageSchocalshipModal({
                 name="universityCity"
                 value={formData.universityCity}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -190,7 +208,9 @@ export default function ManageSchocalshipModal({
                 name="universityWorldRank"
                 value={formData.universityWorldRank}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -203,7 +223,9 @@ export default function ManageSchocalshipModal({
                 name="subjectCategory"
                 value={formData.subjectCategory}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               >
                 <option value="">Select</option>
@@ -221,7 +243,9 @@ export default function ManageSchocalshipModal({
                 name="scholarshipCategory"
                 value={formData.scholarshipCategory}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               >
                 <option value="">Select</option>
@@ -237,7 +261,9 @@ export default function ManageSchocalshipModal({
                 name="degree"
                 value={formData.degree}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               >
                 <option value="">Select</option>
@@ -256,7 +282,9 @@ export default function ManageSchocalshipModal({
                 name="tuitionFees"
                 value={formData.tuitionFees}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
               />
             </div>
 
@@ -269,7 +297,9 @@ export default function ManageSchocalshipModal({
                 name="applicationFees"
                 value={formData.applicationFees}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -283,7 +313,9 @@ export default function ManageSchocalshipModal({
                 name="serviceCharge"
                 value={formData.serviceCharge}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -297,7 +329,9 @@ export default function ManageSchocalshipModal({
                 name="applicationDeadline"
                 value={formData.applicationDeadline}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>

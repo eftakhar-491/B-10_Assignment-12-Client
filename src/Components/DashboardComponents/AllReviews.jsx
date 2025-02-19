@@ -7,8 +7,9 @@ import { useQuery } from "@tanstack/react-query";
 import StateContext from "../../Context/StateContext";
 import { toast } from "react-toastify";
 import l from "../../assets/images/loading.gif";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function AllReviews() {
+  const { theme } = useTheme();
   const { user } = useContext(AuthContext);
   const { setSideBar } = useContext(StateContext);
 
@@ -29,7 +30,11 @@ export default function AllReviews() {
 
   return (
     <>
-      <section className="md:ml-[320px] font-Roboto min-h-[90vh] pb-10 bg-[#e4e4e4d6]">
+      <section
+        className={`md:ml-[320px] font-Roboto min-h-[90vh] pb-10 ${
+          theme ? "bg-black" : "bg-[#e4e4e4d6]"
+        }`}
+      >
         <OpenDrowerBTN setSideBar={setSideBar} />
         <div>
           <h1 className="text-3xl pt-9 font-Lora font-semibold text-center">

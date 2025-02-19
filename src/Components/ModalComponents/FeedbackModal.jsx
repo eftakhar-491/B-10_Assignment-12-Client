@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { toast } from "react-toastify";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function FeedbackModal({ data, setFeedbackModal, refetch }) {
+  const { theme } = useTheme();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   async function handelFeedbackSubmit(e) {
@@ -22,7 +23,11 @@ export default function FeedbackModal({ data, setFeedbackModal, refetch }) {
   return (
     <>
       <section className="absolute z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="max-w-[500px] w-full bg-white p-4 rounded-lg">
+        <div
+          className={`max-w-[500px] w-full ${
+            theme ? "bg-black" : "bg-white"
+          } p-4 rounded-lg`}
+        >
           <h1 className="flex justify-between text-xl font-Lora">
             Feedback
             <span
@@ -51,11 +56,13 @@ export default function FeedbackModal({ data, setFeedbackModal, refetch }) {
               name="feedback"
               rows={5}
               defaultValue={data?.feedback}
-              className="border-2 mt-2 w-full pl-4"
+              className={`border-2 mt-2 w-full pl-4 ${
+                theme ? "bg-black rounded-md" : "bg-white"
+              }`}
             ></textarea>
             <button
               type="submit"
-              className="active:scale-95 w-full text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold"
+              className="active:scale-95 w-full text-sm md:text-lg border-2 border-blue-800 px-5 py-1 rounded-lg font-bold"
             >
               Send Feedback
             </button>

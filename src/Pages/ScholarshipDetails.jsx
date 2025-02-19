@@ -11,12 +11,13 @@ import Payment from "../Components/Shared/Payment";
 import ReviewShowCard from "../Components/Shared/ReviewShowCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-
+import { useTheme } from "../Context/ThemeContext";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 export default function ScholarshipDetails() {
+  const { theme } = useTheme();
   const [paymentModal, setPaymentModal] = useState(false);
   const { applyModal, setApplyModal } = useContext(StateContext);
   const { user } = useContext(AuthContext);
@@ -58,9 +59,16 @@ export default function ScholarshipDetails() {
 
   return (
     <>
+      <h1 className="text-2xl font-Lora font-semibold text-center mt-40 mb-10">
+        Scholarship Details
+      </h1>
       {applyModal && <ApplyedDetailsForm data={scholarshipDetails} />}
-      <section className="font-Roboto mt-40">
-        <div className="border max-w-[1000px] mx-auto mt-[80px] bg-white p-5 rounded-lg">
+      <section className="font-Roboto">
+        <div
+          className={`border max-w-[1000px] mx-auto  ${
+            theme ? "bg-black" : "bg-white"
+          } p-5 rounded-lg`}
+        >
           <div className="mb-6 flex flex-col md:flex-row md:items-center gap-5">
             <img
               className="md:w-[300px] rounded-lg"
@@ -135,7 +143,9 @@ export default function ScholarshipDetails() {
             onClick={() => {
               setPaymentModal(true);
             }}
-            className="mt-3 w-full active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold"
+            className={`mt-3 w-full active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold ${
+              theme ? "hover:bg-gray-900" : "hover:bg-blue-100"
+            }`}
           >
             Apply Scholarship
           </button>

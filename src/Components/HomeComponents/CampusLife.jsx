@@ -1,12 +1,20 @@
 import React from "react";
+import { useTheme } from "../../Context/ThemeContext";
 
 export default function CampusLife() {
+  const { theme } = useTheme();
   return (
     <section className=" bg-maroon-700 bg-transparent text-black py-16 md:px-16 text-center">
-      <h2 className="text-4xl font-bold text-black">
+      <h2
+        className={`text-4xl font-bold ${theme ? "text-white" : "text-black"}`}
+      >
         Campus <span className="">Life</span>
       </h2>
-      <p className="mt-4 text-lg max-w-2xl mx-auto text-black">
+      <p
+        className={`mt-4 text-lg max-w-2xl mx-auto ${
+          theme ? "text-white" : "text-black"
+        }`}
+      >
         Building a vibrant community of creative and accomplished people from
         around the world
       </p>
@@ -18,10 +26,14 @@ export default function CampusLife() {
             alt="Student Life"
             className="w-full h-64 object-cover rounded-lg"
           />
-          <h3 className="mt-4 text-xl font-semibold text-black">
+          <h3
+            className={`mt-4 text-xl font-semibold ${
+              theme ? "text-white" : "text-black"
+            }`}
+          >
             Student Life
           </h3>
-          <p className="mt-2 text-sm text-black">
+          <p className={`mt-2 text-sm ${theme ? "text-white" : "text-black"}`}>
             Experience the dynamic and engaging student activities on campus.
           </p>
         </div>
@@ -31,10 +43,14 @@ export default function CampusLife() {
             alt="Arts & Culture"
             className="w-full h-64 object-cover rounded-lg"
           />
-          <h3 className="mt-4 text-xl font-semibold text-black">
+          <h3
+            className={`mt-4 text-xl font-semibold ${
+              theme ? "text-white" : "text-black"
+            }`}
+          >
             Arts & Culture
           </h3>
-          <p className="mt-2 text-sm text-black">
+          <p className={`mt-2 text-sm ${theme ? "text-white" : "text-black"}`}>
             Immerse yourself in a diverse and vibrant artistic environment.
           </p>
         </div>
@@ -44,10 +60,14 @@ export default function CampusLife() {
             alt="Recreation & Wellness"
             className="w-full h-64 object-cover rounded-lg"
           />
-          <h3 className="mt-4 text-xl font-semibold text-black">
+          <h3
+            className={`mt-4 text-xl font-semibold ${
+              theme ? "text-white" : "text-black"
+            }`}
+          >
             Campus Wellness
           </h3>
-          <p className="mt-2 text-sm text-black">
+          <p className={`mt-2 text-sm ${theme ? "text-white" : "text-black"}`}>
             Experience Campus Wellness through our diverse programs that promote
             a balanced lifestyle.
           </p>
@@ -58,10 +78,14 @@ export default function CampusLife() {
             alt="Recreation & Wellness"
             className="w-full h-64 object-cover rounded-lg"
           />
-          <h3 className="mt-4 text-xl font-semibold text-black">
+          <h3
+            className={`mt-4 text-xl font-semibold ${
+              theme ? "text-white" : "text-black"
+            }`}
+          >
             Recreation & Wellness
           </h3>
-          <p className="mt-2 text-sm text-black">
+          <p className={`mt-2 text-sm ${theme ? "text-white" : "text-black"}`}>
             Stay active and maintain a balanced lifestyle with our wellness
             programs.
           </p>

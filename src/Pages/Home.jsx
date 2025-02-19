@@ -24,6 +24,7 @@ export default function Home() {
       <AlumniEvent />
       <hr />
       <Faqs />
+      <hr />
     </>
   );
 }

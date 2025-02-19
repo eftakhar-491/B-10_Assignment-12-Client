@@ -4,11 +4,12 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { AuthContext } from "../../Firebase/AuthProvider";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
   const [uploading, setUploading] = useState(false);
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
+  const { theme } = useTheme();
   const [formData, setFormData] = useState({
     phoneNumber: "",
     village: "",
@@ -73,7 +74,11 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
   return (
     <>
       <section className=" fixed z-50 overflow-y-auto top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="max-w-[500px] w-full bg-white mt-[400px] mb-10 p-4 rounded-lg">
+        <div
+          className={`max-w-[500px] w-full ${
+            theme ? "bg-black" : "bg-white"
+          } mt-[400px] mb-10 p-4 rounded-lg`}
+        >
           <h1 className=" mb-4 flex justify-between text-xl font-Lora">
             Update Applycation Form
             <span
@@ -110,7 +115,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                 name="photo"
                 type="file"
                 onChange={handelPhotoUpload}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
               />
               {uploading && (
                 <p className="text-sm text-blue-500">Uploading...</p>
@@ -125,7 +132,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -140,7 +149,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                 name="country"
                 value={formData.country}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
               />
             </div>
             <div>
@@ -152,7 +163,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                 name="district"
                 value={formData.district}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -165,7 +178,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                 name="village"
                 value={formData.village}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               />
             </div>
@@ -175,7 +190,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                 name="gender"
                 value={formData.gender}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               >
                 <option value="">Select</option>
@@ -191,7 +208,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                 name="degree"
                 value={formData.degree}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
                 required
               >
                 <option value="">Select</option>
@@ -210,7 +229,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                   name="sscResult"
                   value={formData.sscResult}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   required
                 />
               </div>
@@ -223,7 +244,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                   name="hscResult"
                   value={formData.hscResult}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   required
                 />
               </div>
@@ -238,7 +261,9 @@ export default function UpdateApplyedModal({ data, setUpdateModal, refetch }) {
                 name="studyGap"
                 value={formData.studyGap}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className={`w-full p-2 border border-gray-300 rounded ${
+                  theme ? "bg-gray-900" : "bg-white"
+                }`}
               />
             </div>
 

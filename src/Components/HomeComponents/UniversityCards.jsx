@@ -1,4 +1,7 @@
+import { useTheme } from "../../Context/ThemeContext";
+
 export default function UniversityCards() {
+  const { theme } = useTheme();
   const universities = [
     {
       id: 1,
@@ -39,12 +42,16 @@ export default function UniversityCards() {
   ];
 
   return (
-    <section className="py-12 bg-gray-100">
+    <section className={`py-12 ${theme ? "bg-black" : "bg-gray-100"}`}>
       <div className="mx-auto text-center px-4">
-        <h2 className="text-3xl font-bold text-gray-800">
+        <h2
+          className={`text-3xl font-bold ${
+            theme ? "text-white" : "text-gray-800"
+          }`}
+        >
           Partner Universities
         </h2>
-        <p className="mt-3 text-gray-600">
+        <p className={`mt-3 ${theme ? "text-white" : "text-gray-600"}`}>
           We are affiliated with top institutions around the world, ensuring the
           highest quality education.
         </p>
@@ -54,7 +61,9 @@ export default function UniversityCards() {
         {universities.map((university, index) => (
           <div
             key={index}
-            className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center"
+            className={`border shadow-lg rounded-lg p-6 flex flex-col items-center ${
+              theme ? "bg-black" : "bg-white"
+            }`}
           >
             <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center">
               <img
@@ -63,10 +72,20 @@ export default function UniversityCards() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h3 className="mt-4 text-xl font-semibold text-gray-700">
+            <h3
+              className={`mt-4 text-xl font-semibold ${
+                theme ? "text-white" : "text-gray-700"
+              }`}
+            >
               {university.name}
             </h3>
-            <p className="text-gray-500 text-sm mt-2">{university.tagline}</p>
+            <p
+              className={`text-gray-500 text-sm mt-2 ${
+                theme ? "text-white" : "text-gray-500"
+              }`}
+            >
+              {university.tagline}
+            </p>
           </div>
         ))}
       </div>

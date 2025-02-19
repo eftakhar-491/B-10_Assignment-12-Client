@@ -1,12 +1,17 @@
 import React from "react";
 
 import { useNavigate } from "react-router-dom";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function ScholarshipCard({ data }) {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   return (
     <>
-      <div className=" flex border items-start min-h-[585px] bg-white p-4 font-Roboto flex-col gap-2 rounded-lg w-[300px]">
+      <div
+        className={` flex border items-start min-h-[585px] p-4 font-Roboto flex-col gap-2 rounded-lg w-[300px] ${
+          theme ? "bg-black" : "bg-white"
+        }`}
+      >
         <div className="h-[250px] rounded-lg ">
           <img
             className="mx-auto rounded-lg h-[250px] object-cover"
@@ -150,7 +155,9 @@ export default function ScholarshipCard({ data }) {
             onClick={() => {
               navigate(`/scholarshipdetails/${data._id}`);
             }}
-            className="cursor-pointer text-center w-full text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-blue-100 active:scale-95"
+            className={`cursor-pointer text-center w-full text-lg border-2 border-blue-700 px-4 py-1 rounded-lg mt-5  active:scale-95 ${
+              theme ? "hover:bg-slate-700" : "hover:bg-blue-100"
+            }`}
           >
             Show All Details
           </div>

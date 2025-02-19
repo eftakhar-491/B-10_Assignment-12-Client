@@ -4,8 +4,10 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import StateContext from "../../Context/StateContext";
+import { useTheme } from "../../Context/ThemeContext";
 
 export default function ApplyedDetailsForm({ data }) {
+  const { theme } = useTheme();
   const { setApplyModal } = useContext(StateContext);
   const [uploading, setUploading] = useState(false);
   const axiosSecure = useAxiosSecure();
@@ -62,7 +64,11 @@ export default function ApplyedDetailsForm({ data }) {
     <>
       <section className="fixed z-[80] overflow-y-scroll top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center">
         <div className="max-w-[500px] mt-10 w-full h-screen overflow-y-auto">
-          <div className="max-w-[500px] bg-white  mb-10 p-4 rounded-lg">
+          <div
+            className={`max-w-[500px] ${
+              theme ? "bg-black" : "bg-white"
+            } mb-10 p-4 rounded-lg`}
+          >
             <h1 className=" mb-4 flex justify-between text-xl font-Lora">
               Applycation Form
               <span
@@ -85,7 +91,7 @@ export default function ApplyedDetailsForm({ data }) {
                 </svg>
               </span>
             </h1>
-            <form onSubmit={handleApplySubmit} className="  space-y-4">
+            <form onSubmit={handleApplySubmit} className={`space-y-4 `}>
               <div>
                 <label className="block text-sm font-medium mb-1">
                   University Name
@@ -94,7 +100,9 @@ export default function ApplyedDetailsForm({ data }) {
                   type="text"
                   value={data.universityName}
                   name="universityName"
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   disabled
                 />
               </div>
@@ -105,7 +113,9 @@ export default function ApplyedDetailsForm({ data }) {
                 <select
                   name="subjectCategory"
                   value={data.subjectCategory}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   disabled
                 >
                   <option value="">Select</option>
@@ -121,7 +131,9 @@ export default function ApplyedDetailsForm({ data }) {
                 <select
                   name="scholarshipCategory"
                   value={data.scholarshipCategory}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   disabled
                 >
                   <option value="">Select</option>
@@ -139,7 +151,9 @@ export default function ApplyedDetailsForm({ data }) {
                   required
                   type="file"
                   onChange={handelPhotoUpload}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                 />
                 {uploading && (
                   <p className="text-sm text-blue-500">Uploading...</p>
@@ -154,7 +168,9 @@ export default function ApplyedDetailsForm({ data }) {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   required
                 />
               </div>
@@ -169,7 +185,9 @@ export default function ApplyedDetailsForm({ data }) {
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                 />
               </div>
               <div>
@@ -181,7 +199,9 @@ export default function ApplyedDetailsForm({ data }) {
                   name="district"
                   value={formData.district}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   required
                 />
               </div>
@@ -194,7 +214,9 @@ export default function ApplyedDetailsForm({ data }) {
                   name="village"
                   value={formData.village}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   required
                 />
               </div>
@@ -204,7 +226,9 @@ export default function ApplyedDetailsForm({ data }) {
                   name="gender"
                   value={formData.gender}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   required
                 >
                   <option value="">Select</option>
@@ -220,7 +244,9 @@ export default function ApplyedDetailsForm({ data }) {
                   name="degree"
                   value={formData.degree}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                   required
                 >
                   <option value="">Select</option>
@@ -239,7 +265,9 @@ export default function ApplyedDetailsForm({ data }) {
                     name="sscResult"
                     value={formData.sscResult}
                     onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className={`w-full p-2 border border-gray-300 rounded ${
+                      theme ? "bg-gray-900" : "bg-white"
+                    }`}
                     required
                   />
                 </div>
@@ -252,7 +280,9 @@ export default function ApplyedDetailsForm({ data }) {
                     name="hscResult"
                     value={formData.hscResult}
                     onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className={`w-full p-2 border border-gray-300 rounded ${
+                      theme ? "bg-gray-900" : "bg-white"
+                    }`}
                     required
                   />
                 </div>
@@ -267,7 +297,9 @@ export default function ApplyedDetailsForm({ data }) {
                   name="studyGap"
                   value={formData.studyGap}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded"
+                  className={`w-full p-2 border border-gray-300 rounded ${
+                    theme ? "bg-gray-900" : "bg-white"
+                  }`}
                 />
               </div>
 

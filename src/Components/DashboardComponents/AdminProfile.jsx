@@ -21,8 +21,9 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function AdminProfile() {
+  const { theme } = useTheme();
   const { setSideBar } = useContext(StateContext);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
@@ -54,7 +55,11 @@ export default function AdminProfile() {
 
   return (
     <>
-      <section className="relative md:ml-[320px] font-Roboto min-h-screen bg-white ">
+      <section
+        className={`relative md:ml-[320px] font-Roboto min-h-screen ${
+          theme ? "bg-black" : "bg-white"
+        }`}
+      >
         <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="flex flex-col mt-auto items-center justify-start  py-10">
           <h1 className="text-3xl font-Lora font-semibold mb-3">
@@ -68,7 +73,11 @@ export default function AdminProfile() {
           {!isError && isLoading ? (
             <img className="w-24 mx-auto" src={l} />
           ) : (
-            <div className="flex flex-col md:flex-row items-center gap-10 ">
+            <div
+              className={`flex flex-col md:flex-row items-center gap-10 ${
+                theme ? "bg-black text-white" : "text-black"
+              }`}
+            >
               <div className="relative">
                 <img
                   src={userData?.imageUrl}

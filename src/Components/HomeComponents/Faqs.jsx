@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
+import { useTheme } from "../../Context/ThemeContext";
 
 const Faqs = () => {
+  const { theme } = useTheme();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -41,7 +43,9 @@ const Faqs = () => {
   ];
 
   return (
-    <section className={` mt-5 bg-white -mb-12 pt-10`}>
+    <section
+      className={` mt-5 ${theme ? "bg-transparent" : "bg-white"} mb-12 pt-10`}
+    >
       <div className="container mx-auto px-4 w-11/12 lg:w-4/5">
         <h2 className="text-3xl font-bold text-center  mb-6">
           Frequently Asked Questions
@@ -59,7 +63,13 @@ const Faqs = () => {
                 </span>
               </button>
               {activeIndex === index && (
-                <p className="mt-2 text-gray-600">{faq.answer}</p>
+                <p
+                  className={`mt-2 ${
+                    theme ? "text-white/60 " : "text-gray-600"
+                  }`}
+                >
+                  {faq.answer}
+                </p>
               )}
             </div>
           ))}

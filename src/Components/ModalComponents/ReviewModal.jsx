@@ -4,11 +4,13 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import { useTheme } from "../../Context/ThemeContext";
 export default function ReviewModal({ data, setReviewModal }) {
   const [value, setValue] = useState(1);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
 
+  const { theme } = useTheme();
   async function handelReviewSubmit(e) {
     e.preventDefault();
     const obj = {
@@ -33,7 +35,11 @@ export default function ReviewModal({ data, setReviewModal }) {
   return (
     <>
       <section className="absolute z-50 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="max-w-[500px] w-full bg-white p-4 rounded-lg">
+        <div
+          className={`max-w-[500px] w-full ${
+            theme ? "bg-black" : "bg-white"
+          } p-4 rounded-lg`}
+        >
           <h1 className="flex mb-1 justify-between text-xl font-Lora">
             Review
             <span
@@ -57,6 +63,11 @@ export default function ReviewModal({ data, setReviewModal }) {
             </span>
           </h1>
           <Rating
+            className={`${
+              theme
+                ? "w-full bg-gray-500 border rounded-md text-white"
+                : "text-black"
+            }`}
             name="simple-controlled"
             value={value}
             onChange={(event, newValue) => {
@@ -68,11 +79,13 @@ export default function ReviewModal({ data, setReviewModal }) {
               placeholder="Write your Comment here..."
               name="comment"
               rows={5}
-              className="border-2 mt-2 w-full pl-4"
+              className={`rounded-md border-2 mt-2 w-full pl-4 ${
+                theme ? "bg-gray-900" : "bg-white"
+              }`}
             ></textarea>
             <button
               type="submit"
-              className="active:scale-95 w-full text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold"
+              className="active:scale-95 w-full text-sm md:text-lg border-2 border-blue-800 px-5  py-1 rounded-lg font-bold"
             >
               Send Review
             </button>

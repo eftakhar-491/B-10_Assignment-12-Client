@@ -8,8 +8,11 @@ import StatusUpdateModal from "../ModalComponents/StatusUpdateModal";
 import StateContext from "../../Context/StateContext";
 import AppliedScholarshipDetailsModal from "../ModalComponents/AppliedScholarshipDetailsModal";
 import FeedbackModal from "../ModalComponents/FeedbackModal";
+import { useTheme } from "../../Context/ThemeContext";
 
 export default function AppliedScholarship() {
+  const { theme } = useTheme();
+
   const [filterApplication, setFilterApplication] = useState([]);
 
   const { setSideBar } = useContext(StateContext);
@@ -108,7 +111,11 @@ export default function AppliedScholarship() {
           data={statusData}
         />
       )}
-      <section className="md:ml-[320px] bg-white min-h-full">
+      <section
+        className={`md:ml-[320px] ${
+          theme ? "bg-black" : "bg-white"
+        } min-h-full`}
+      >
         <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="px-4">
           <h1 className="text-3xl pt-9 font-Lora font-semibold text-center">
@@ -120,7 +127,9 @@ export default function AppliedScholarship() {
             <select
               onChange={handelfilter}
               name="roleChange"
-              className="w-full p-2 border border-gray-300 rounded"
+              className={`w-full p-2 border border-gray-300 rounded ${
+                theme ? "bg-black" : "bg-white"
+              }`}
             >
               <option value="All">All</option>
               <option value="applya">Apply Date(ASC)</option>

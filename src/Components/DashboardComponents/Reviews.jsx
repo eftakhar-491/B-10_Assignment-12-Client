@@ -8,8 +8,9 @@ import { toast } from "react-toastify";
 import UpdateReviewModal from "../ModalComponents/UpdateReviewModal";
 import StateContext from "../../Context/StateContext";
 import l from "../../assets/images/loading.gif";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function Reviews() {
+  const { theme } = useTheme();
   const axiosSecure = useAxiosSecure();
   const [updateReviewModal, setUpdateReviewModal] = useState(false);
   const [updateReviewData, setUpdateReviewData] = useState(false);
@@ -52,7 +53,11 @@ export default function Reviews() {
           setUpdateReviewModal={setUpdateReviewModal}
         />
       )}
-      <section className="md:ml-[320px] bg-white min-h-full">
+      <section
+        className={`md:ml-[320px] ${
+          theme ? "bg-black" : "bg-white"
+        } min-h-full`}
+      >
         <OpenDrowerBTN setSideBar={setSideBar} />
         <div className="px-4">
           <h1 className="text-3xl pt-9 font-Lora font-semibold text-center">

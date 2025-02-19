@@ -3,8 +3,9 @@ import React, { useContext } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { toast } from "react-toastify";
-
+import { useTheme } from "../../Context/ThemeContext";
 export default function AllReviewsCard({ data, refetch }) {
+  const { theme } = useTheme();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   async function handelReviewDelete(id) {
@@ -19,7 +20,11 @@ export default function AllReviewsCard({ data, refetch }) {
     }
   }
   return (
-    <div className="flex-1 min-w-[340px] max-w-[500px] bg-white p-4 rounded-lg ">
+    <div
+      className={`flex-1 min-w-[340px] max-w-[500px] border ${
+        theme ? "bg-black" : "bg-white"
+      } p-4 rounded-lg `}
+    >
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <img
@@ -59,7 +64,11 @@ export default function AllReviewsCard({ data, refetch }) {
         </div>
       </div>
       <div className="mt-5">
-        <p className="text-sm bg-blue-100 px-4 py-1 border-2 border-blue-800 w-fit rounded-2xl">
+        <p
+          className={`text-sm  px-4 py-1 border-2 border-blue-800 w-fit rounded-2xl ${
+            theme ? "bg-black" : "bg-blue-100"
+          }`}
+        >
           {data?.scholarshipDetails[0]?.subjectCategory || "No Category"}
         </p>
         <p className="p-3 text-lg mt-0">
@@ -69,7 +78,9 @@ export default function AllReviewsCard({ data, refetch }) {
       </div>
       <button
         onClick={() => handelReviewDelete(data?._id)}
-        className="text-lg w-full border-2 border-blue-700 px-4 py-1 rounded-lg mt-5 hover:bg-red-200 hover:border-red-600 active:scale-95"
+        className={`text-lg w-full border-2 border-blue-700 px-4 py-1 rounded-lg mt-5  hover:border-red-600 active:scale-95 ${
+          theme ? " hover:text-black hover:bg-red-200" : "hover:bg-red-200 "
+        }`}
       >
         Delete Review
       </button>
