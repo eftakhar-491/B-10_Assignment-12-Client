@@ -79,6 +79,25 @@ export default function Nav() {
               >
                 <li>All Scholarship</li>
               </NavLink>
+              <NavLink
+                to={"/aboutus"}
+                className={({ isActive }) =>
+                  isActive ? "border-b-2 border-blue-800 font-semibold" : ""
+                }
+              >
+                <li>About Us</li>
+              </NavLink>
+              {user && (
+                <NavLink
+                  state={{ his: "/dashboard" }}
+                  to={"/dashboard"}
+                  className={({ isActive }) =>
+                    isActive ? "border-b-2 border-blue-800 font-semibold" : ""
+                  }
+                >
+                  <li>Dashboard</li>
+                </NavLink>
+              )}
             </ul>
           )}
 
@@ -101,18 +120,74 @@ export default function Nav() {
                 <li>All Scholarship</li>
               </NavLink>
               <NavLink
-                state={{ his: "/dashboard" }}
-                to={"/dashboard"}
+                to={"/aboutus"}
                 className={({ isActive }) =>
                   isActive ? "border-b-2 border-blue-800 font-semibold" : ""
                 }
               >
-                <li>Dashboard</li>
+                <li>About Us</li>
               </NavLink>
-              <li>
+              {user && (
+                <NavLink
+                  state={{ his: "/dashboard" }}
+                  to={"/dashboard"}
+                  className={({ isActive }) =>
+                    isActive ? "border-b-2 border-blue-800 font-semibold" : ""
+                  }
+                >
+                  <li>Dashboard</li>
+                </NavLink>
+              )}
+            </ul>
+            <div className="flex items-center gap-4">
+              {!user ? (
+                location.pathname === "/login" ? (
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) =>
+                      isActive ? "bg-blue-200" : ""
+                    }
+                  >
+                    <button
+                      className={`active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 ${
+                        theme ? "hover:bg-slate-900" : "hover:bg-blue-100"
+                      } py-1 rounded-lg font-bold `}
+                    >
+                      Register
+                    </button>
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      isActive ? "bg-blue-200" : ""
+                    }
+                  >
+                    <button
+                      className={`"active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 ${
+                        theme ? "hover:bg-slate-900" : "hover:bg-blue-100"
+                      } py-1 rounded-lg font-bold `}
+                    >
+                      LogIn
+                    </button>
+                  </NavLink>
+                )
+              ) : (
+                <>
+                  <button
+                    onClick={handelLogout}
+                    className={`active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 ${
+                      theme ? "hover:bg-slate-900" : "hover:bg-blue-100"
+                    } py-1 rounded-lg font-bold `}
+                  >
+                    LogOut
+                  </button>
+                </>
+              )}
+              <div className="flex items-center gap-2">
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center justify-center w-10 h-10 rounded-full border-2 "
+                  className="flex items-center justify-center md:w-10 md:h-10 w-6 h-6 rounded-full border-2 "
                   aria-label="Toggle light and dark mode"
                 >
                   {!theme ? (
@@ -123,7 +198,7 @@ export default function Nav() {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="size-6"
+                        className="size-4 md:size-6"
                       >
                         <path
                           strokeLinecap="round"
@@ -140,7 +215,7 @@ export default function Nav() {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="size-6"
+                        className="size-4 md:size-6"
                       >
                         <path
                           strokeLinecap="round"
@@ -151,65 +226,34 @@ export default function Nav() {
                     </span>
                   )}
                 </button>
-              </li>
-            </ul>
-            <div className="flex items-center gap-4">
-              {!user ? (
-                location.pathname === "/login" ? (
-                  <NavLink
-                    to="/register"
-                    className={({ isActive }) =>
-                      isActive ? "bg-blue-200" : ""
-                    }
-                  >
-                    <button className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold">
-                      Register
-                    </button>
-                  </NavLink>
-                ) : (
-                  <NavLink
-                    to="/login"
-                    className={({ isActive }) =>
-                      isActive ? "bg-blue-200" : ""
-                    }
-                  >
-                    <button className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold">
-                      LogIn
-                    </button>
-                  </NavLink>
-                )
-              ) : (
-                <>
-                  <button
-                    onClick={handelLogout}
-                    className="active:scale-95 text-sm md:text-lg border-2 border-blue-800 px-5 hover:bg-blue-100 py-1 rounded-lg font-bold"
-                  >
-                    LogOut
-                  </button>
-                </>
-              )}
-              <div
-                onClick={() => setProfileMenu((p) => !p)}
-                className="cursor-pointer active:scale-95 border w-10 h-10 rounded-full overflow-hidden"
-              >
-                {user ? (
-                  <img src={user?.photoURL} alt="" />
-                ) : (
-                  <img src={profile} alt="" />
-                )}
+                <div
+                  onClick={() => setProfileMenu((p) => !p)}
+                  className="cursor-pointer active:scale-95 border md:w-10 md:h-10 w-6 h-6 rounded-full overflow-hidden"
+                >
+                  {user ? (
+                    <img src={user?.photoURL} alt="" />
+                  ) : (
+                    <img src={profile} alt="" />
+                  )}
+                </div>
               </div>
+
               {profileMenu && (
                 <ul
                   className={`right-3 flex md:hidden flex-col absolute top-14 bg-blue-400/60 backdrop-blur-md p-4 rounded-lg z-50 gap-4`}
                 >
-                  <NavLink
-                    to={"/dashboard"}
-                    className={({ isActive }) =>
-                      isActive ? "border-b-2 border-blue-800 font-semibold" : ""
-                    }
-                  >
-                    <li>Dashboard</li>
-                  </NavLink>
+                  {user && (
+                    <NavLink
+                      to={"/dashboard"}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "border-b-2 border-blue-800 font-semibold"
+                          : ""
+                      }
+                    >
+                      <li>Dashboard</li>
+                    </NavLink>
+                  )}
                 </ul>
               )}
             </div>

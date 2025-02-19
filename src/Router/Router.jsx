@@ -22,6 +22,7 @@ import AppliedScholarship from "../Components/DashboardComponents/AppliedScholar
 import AdminProfile from "../Components/DashboardComponents/AdminProfile";
 import ManageUser from "../Components/DashboardComponents/ManageUser";
 import { ThemeProvider } from "../Context/ThemeContext";
+import AboutUs from "../Pages/AboutUs";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/scholarships",
         element: <AllScholarship />,
+      },
+      {
+        path: "/aboutus",
+        element: <AboutUs />,
       },
       {
         path: "/scholarshipdetails/:id",
