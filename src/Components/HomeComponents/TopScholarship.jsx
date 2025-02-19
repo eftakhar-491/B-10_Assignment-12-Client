@@ -32,7 +32,8 @@ export default function TopScholarship() {
             goals.
           </p>
         </div>
-        <div className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1900px] mx-auto gap-4 px-[5%] mt-10">
+
+        <div className="flex items-center flex-wrap justify-center max-w-[1900px] mx-auto gap-4 px-[5%] mt-10">
           {isLoading && (
             <div className="md:col-span-2 col-span-1 lg:col-span-3 flex justify-center items-center w-full">
               <img className="max-w-[250px] mx-auto" src={l} alt="loading.." />
@@ -47,6 +48,7 @@ export default function TopScholarship() {
             <ScholarshipCard key={i + "t"} data={scholarship} />
           ))}
         </div>
+
         <div>
           <button
             onClick={() => navigate("/scholarships")}
